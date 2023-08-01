@@ -1,0 +1,229 @@
+<div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            <h1>4. All AVL Data Time Error</h1>
+            <p>
+			    This API provides list of all AVL Devices time setting error within x minutes, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getDevicesTimeError?min=100&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+                <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(In minutes)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="loc-time-error-x-minutes">
+[{
+"imei": 862095054357147,
+"avltm": 1676987628000,
+"location": {
+"type": "Point",
+"coordinates": [39.63957977294922, 22.609296798706055]
+},
+"alt": 2,
+"ang": 56,
+"spd": 0,
+"odata": 3000,
+"createdon": 1678338449406,
+"updatedon": 1678338449406,
+"_id": "640969918610f5232723cdf6",
+"device": {
+"busid": 34194,
+"license_ser_no": 374117610,
+"plate_no": "أ ر أ 6123",
+"engplate_no": "6123 ARA",
+"bus_oper_no": 108,
+"trnspt_comp_id": 38,
+"trnspt_comp_ar": "شركة أركان المشاعر لنقل الحجاج والمعتمرين",
+"device_comp": "BCE"
+}
+},.....]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+			
+			
+        </div>
+        <div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            <h2>Errors</h2>
+            <p>
+                min value must be in between 1 min to 24 hours
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		
+		<!-------------------->

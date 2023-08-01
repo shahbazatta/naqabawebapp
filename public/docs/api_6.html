@@ -1,0 +1,295 @@
+	
+		<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="geo-bus-status">
+            <h1>6. Bus is availble on given locations</h1>
+            <p>
+			    Return whether bus is available in a given location or not., to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-status">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getBusStatus?plate_no=%D8%A3%20%D8%B1%20%D8%B5%206464&lng=39.94312286376953&accuracy=50000&min=11&lat=21.242998123168945&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(in minutes)</td>
+                </tr>
+                <tr>
+                    <td>imei</td>
+                    <td>Integer</td>
+                    <td>358480083206997</td>
+                </tr>
+				
+				<tr>
+                    <td>engplate_no(english)</td>
+                    <td>String</td>
+                    <td>6464 XRA</td>
+                </tr>
+				
+				<tr>
+                    <td>plate_no(arabic)</td>
+                    <td>String</td>
+                    <td>أ ر ص 6464</td>
+                </tr>
+				
+				<tr>
+                    <td>latitude(lat)</td>
+                    <td>double</td>
+                    <td>21.353453</td>
+                </tr>
+				<tr>
+                    <td>longitude(lng)</td>
+                    <td>double</td>
+                    <td>39.464564</td>
+                </tr>
+				
+				<tr>
+                    <td>Accuracy(accuracy)</td>
+                    <td>Integer</td>
+                    <td>50000(in meters)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="geo-bus-status">
+
+{
+	"status": 200,
+	"result": "success",
+	"data": [{
+		"imei": 358480083206997,
+		"avltm": 1680423574847,
+		"location": {
+			"type": "Point",
+			"coordinates": [39.8262533, 21.390069999999998]
+		},
+		"alt": 282,
+		"ang": 97,
+		"spd": 0,
+		"odata": 3001,
+		"createdon": 1680423601339,
+		"updatedon": 1680423601339,
+		"pt": [],
+		"_id": "64293ab118d0975f7bfd9ffb",
+		"device": {
+			"busid": 41984,
+			"license_ser_no": 208762710,
+			"plate_no": "أ ر ص 6464",
+			"engplate_no": "6464 XRA",
+			"bus_oper_no": 524,
+			"trnspt_comp_id": 13,
+			"trnspt_comp_ar": "فرع مؤسسة عبدالإله محمد علي مغربي لنقل الحجاج",
+			"device_comp": "Teltonika FM64/FMB64"
+		}
+	}]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-status">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				<tr>
+                    <td>402</td>
+                    <td>
+                        No bus available in y meters
+                    </td>
+                </tr>
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No location received from the bus in last x minutes
+                    </td>
+                </tr>
+				
+				<tr>
+                    <td>400</td>
+                    <td>
+                        IMEI or plate number not found
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->
+		

@@ -1,0 +1,166 @@
+<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="getDelayBetweenReadingsTimePeriod">
+            <h1>13. Two AVL Reading Time difference</h1>
+            <p>
+			   Return the list of the buses where the difference between any two consecutive readings more than x minutes in a given time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="getDelayBetweenReadingsTimePeriod">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getDelayBetweenReadingsTimePeriod?imei=867698044173543&min=5&start_dt=15-04-2023&start_tm=00:00:00&end_dt=15-04-2023&end_tm=10:21:59&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				<tr>
+					<td>imei</td>
+					<td>Integer</td>
+					<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+                </tr>  
+
+				<tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>5(minutes)</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>				
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="getDelayBetweenReadingsTimePeriod">
+{
+	"status": 200,
+	"result": "success",
+	"data": [{
+		"imei": 867698044173543,
+		"avltmRecord1": 1681470752000,
+		"avltmRecord2": 1681471059000,
+		"difference": 307000
+	}, {
+		"imei": 867698044173543,
+		"avltmRecord1": 1681485802000,
+		"avltmRecord2": 1681486141000,
+		"difference": 339000
+	}]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltmRecord1</td>
+<td>Integer</td>
+<td>1681485802000</td>
+</tr>
+
+<tr>
+<td>avltmRecord2</td>
+<td>Integer</td>
+<td>1681486141000</td>
+</tr>
+
+<tr>
+<td>difference</td>
+<td>Integer</td>
+<td>339000</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="getDelayBetweenReadingsTimePeriod">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->

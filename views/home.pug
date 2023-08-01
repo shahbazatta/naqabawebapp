@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <script>
+    -
+       function submitForm(oFormElement)
+       {
+          var xhr = new XMLHttpRequest();
+          xhr.onload = function(){ alert (xhr.responseText); } // success case
+          xhr.onerror = function(){ alert (xhr.responseText); } // failure case
+          xhr.open (oFormElement.method, oFormElement.action, true);
+          xhr.send (new FormData (oFormElement));
+          return false;
+       }
+    </script>
+</head>
+<body>
+<form method="post" action="/" onsubmit="return submitForm(this);">
+    <input type="text" value="00a1cafe011b001e33353633303730343234343130313308010000013febdd19c8000f0e9ff0209a718000690000120000001e09010002000300040016014703f0001504c8000c0900910a00440b004d130044431555440000b5000bb60005422e9b180000cd0386ce000107c700000000f10000601a460000013c4800000bb84900000bb84a00000bb84c00000000024e0000000000000000cf000000000000000001"   name="data" />
+    <input type="submit" value="post request"/>
+</form>
+</body>
+</html>

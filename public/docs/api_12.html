@@ -1,0 +1,163 @@
+<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="all-trips-countABA">
+            <h1>12. All Round Trips (A-B-A)(API 4)</h1>
+            <p>
+			    Return the list all round trips (A-B-A) with total time taken for each round for all buses between Source and Destination during a given time period , to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="all-trips-countABA">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getRTTforAllBussesTimePeriod?src_geo=P5&dest_geo=S5&start_dt=11-04-2023&start_tm=12:00:00&end_dt=11-04-2023&end_tm=13:03:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				<tr>
+                    <td>src_geo(source point geo code)</td>
+                    <td>String</td>
+                    <td>P5</td>
+                </tr>
+				<tr>
+                    <td>dest_geo(destination point geo code)</td>
+                    <td>String</td>
+                    <td>S5</td>
+                </tr>
+				
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="all-trips-countABA">
+[{
+	"imei": "869310065962428",
+	"TotalTimeTaken": [213664, 111340, 161031],
+	"RoundStartTime": [1681207061825, 1681206950485, 1681206789454],
+	"RoundEndTime": [1681207275489, 1681207061825, 1681206950485]
+}, {
+	"imei": "867698044173543",
+	"TotalTimeTaken": [768591, 1902055],
+	"RoundStartTime": [1681206605691, 1681204703636],
+	"RoundEndTime": [1681207374282, 1681206605691]
+}]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>TotalTimeTaken</td>
+<td>Integer(Array)</td>
+<td>[213664, 111340, 161031] (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>RoundStartTime</td>
+<td>Integer(Array)</td>
+<td>[1681207061825, 1681206950485, 1681206789454] (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>RoundEndTime</td>
+<td>Integer(Array)</td>
+<td>[1681207275489, 1681207061825, 1681206950485] (In Miliseconds)</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="all-trips-countABA">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->

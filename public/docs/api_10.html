@@ -1,0 +1,188 @@
+<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="all-trips-count">
+            <h1>10. All Trip Counts</h1>
+            <p>
+			    This API will calculate total trip counts as per source and destination points for time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="all-trips-count">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getAllTripCount?src_geo=P5&dest_geo=S5&start_dt=15-04-2023&start_tm=16:00:00&end_dt=15-04-2023&end_tm=23:00:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 
+				 <tr>
+                    <td>src_geo(source point geo code)</td>
+                    <td>String</td>
+                    <td>P5</td>
+                </tr>
+				<tr>
+                    <td>dest_geo(destination point geo code)</td>
+                    <td>String</td>
+                    <td>S5</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="all-trips-count">
+[{
+	"imei": "867698043914301",
+	"trip_cnt_src_to_dest": 1,
+	"trip_cnt_dest_to_src": 1,
+	"data": [{
+		"startTime": "1681579549815",
+		"endTime": "1681576756633",
+		"src_code": "P5",
+		"dest_code": "S5"
+	}, {
+		"startTime": "1681576855776",
+		"endTime": "1681572078043",
+		"src_code": "S5",
+		"dest_code": "P5"
+	}]
+}]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>trip_cnt_src_to_dest</td>
+<td>Integer</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>trip_cnt_dest_to_src</td>
+<td>Integer</td>
+<td>1</td>
+</tr>
+
+
+<tr>
+<td>startTime</td>
+<td>Integer(mili)</td>
+<td>1681588740492</td>
+</tr>
+
+<tr>
+<td>endTime</td>
+<td>Integer(mili)</td>
+<td>1681588740892</td>
+</tr>
+
+<tr>
+<td>src_code</td>
+<td>String</td>
+<td>P5</td>
+</tr>
+
+<tr>
+<td>dest_code</td>
+<td>String</td>
+<td>S5</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="all-trips-count">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->

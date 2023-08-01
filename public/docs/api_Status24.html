@@ -1,0 +1,123 @@
+<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="Status24">
+            <h1>22. List of Unknown IMEIs and port number</h1>
+            <p>
+			   Return List of IMEIs and port number without details during a given time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="Status24">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getStatusUnknown?token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+							
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="Status24">
+{
+	"status": 200,
+	"result": "success",
+	"count": 2,
+	"data": [{
+		"imei": 350544504943914,
+		"port": 3001
+	}, {
+		"imei": 863540062349916,
+		"port": 3001
+	}]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>count</td>
+<td>Integer</td>
+<td>2</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>350544504943914</td>
+</tr>
+<tr>
+<td>port</td>
+<td>Integer</td>
+<td>3001</td>
+</tr>
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="Status24">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->

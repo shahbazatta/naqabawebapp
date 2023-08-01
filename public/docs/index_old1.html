@@ -1,0 +1,2412 @@
+<!--
+ API Documentation HTML Template  - 1.0.1
+ Copyright © 2016 Florian Nicolas
+ Licensed under the MIT license.
+ https://github.com/ticlekiwi/API-Documentation-HTML-Template
+ !-->
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>API - Documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="ticlekiwi">
+
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/hightlightjs-dark.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/style.css" media="all">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+<body class="one-content-column-version">
+<div class="left-menu">
+    <div class="content-logo">
+        <div class="logo">
+            <img alt="platform by Emily van den Heever from the Noun Project" title="platform by Emily van den Heever from the Noun Project" src="images/toplogo.png" height="70" />
+            <span>Naqaba GPS Tracker API Documentation</span>
+        </div>
+        <button class="burger-menu-icon" id="button-menu-mobile">
+            <svg width="34" height="34" viewBox="0 0 100 100"><path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path><path class="line line2" d="M 20,50 H 80"></path><path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path></svg>
+        </button>
+    </div>
+    <div class="mobile-menu-closer"></div>
+    <div class="content-menu">
+        <div class="content-infos">
+            <div class="info"><b>Version:</b> 1.0.0</div>
+            <div class="info"><b>Last Updated:</b> 9th Mar, 2023</div>
+			
+        </div>
+		
+		<div class="logo"><span>  APIs Lists</span></div>
+		
+		
+	
+	
+		
+        <ul>
+            <li class="scroll-to-link active" data-target="live-loc-api">
+                <a>1. All AVL Live Locations</a>
+            </li>
+            <li class="scroll-to-link" data-target="live-loc-x-minutes-api">
+                <a>2. All AVL Live Locations in x minutes</a>
+            </li>
+            <li class="scroll-to-link" data-target="loc-not-synced-x-minutes">
+                <a>3. All AVL Data Not Received in x Minutes</a>
+            </li>
+			
+			<li class="scroll-to-link" data-target="loc-time-error-x-minutes">
+                <a>4. All AVL Data Time Error</a>
+            </li>
+			
+			<li class="scroll-to-link" data-target="geo-live-devices">
+                <a>5. Live Devices on Geofence Area</a>
+            </li>
+			
+			<li class="scroll-to-link" data-target="geo-bus-status">
+                <a>6. Bus is availble on given locations(21)</a>
+            </li>
+			
+			<li class="scroll-to-link" data-target="geo-bus-time-period">
+                <a>7. Return the list of buses available in a given geofence and time period(13)</a>
+            </li>
+			
+			<li class="scroll-to-link" data-target="geo-dur-time-period">
+                <a>8. Return the duration of the bus stay in a given geofence and time period(10)</a>
+            </li>
+			
+			<li class="scroll-to-link" data-target="all-trips-count">
+                <a>9. All trip counts</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="content-page">
+    <div class="content">
+	<div class="overflow-hidden content-section" id="live-loc-api">
+            <h1>1. All AVL Live Locations</h1>
+            <p>
+			    This API provides list of all AVL Devices last live location, to access this api no api key or no token  is required.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="live-loc-api">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://tracking.naqaba.com.sa/api/getDevicesDataLive?token=cebc8011932a85c60a7e079b840bf083161812d3&min=10</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+                <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(In minutes)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json">
+[{
+"imei": 862095054357147,
+"avltm": 1676987628000,
+"location": {
+"type": "Point",
+"coordinates": [39.63957977294922, 22.609296798706055]
+},
+"alt": 2,
+"ang": 56,
+"spd": 0,
+"odata": 3000,
+"createdon": 1678338449406,
+"updatedon": 1678338449406,
+"_id": "640969918610f5232723cdf6",
+"device": {
+"busid": 34194,
+"license_ser_no": 374117610,
+"plate_no": "أ ر أ 6123",
+"engplate_no": "6123 ARA",
+"bus_oper_no": 108,
+"trnspt_comp_id": 38,
+"trnspt_comp_ar": "شركة أركان المشاعر لنقل الحجاج والمعتمرين",
+"device_comp": "BCE"
+}
+},.....]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+			
+			
+        </div>
+        <div class="overflow-hidden content-section" id="live-loc-api">
+            <h2>Errors</h2>
+            <p>
+                min value must be in between 1 min to 24 hours
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		
+		
+		<div class="overflow-hidden content-section" id="live-loc-x-minutes-api">
+            <h1>2. All AVL Live Locations in x minutes</h1>
+            <p>
+			    This API provides list of all AVL Devices last live location received within x minutes, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="live-loc-x-minutes-api">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://tracking.naqaba.com.sa/api/getDevicesDataLive?token=cebc8011932a85c60a7e079b840bf083161812d3&min=10</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+                <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(In minutes)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="live-loc-x-minutes-api">
+[{
+"imei": 862095054357147,
+"avltm": 1676987628000,
+"location": {
+"type": "Point",
+"coordinates": [39.63957977294922, 22.609296798706055]
+},
+"alt": 2,
+"ang": 56,
+"spd": 0,
+"odata": 3000,
+"createdon": 1678338449406,
+"updatedon": 1678338449406,
+"_id": "640969918610f5232723cdf6",
+"device": {
+"busid": 34194,
+"license_ser_no": 374117610,
+"plate_no": "أ ر أ 6123",
+"engplate_no": "6123 ARA",
+"bus_oper_no": 108,
+"trnspt_comp_id": 38,
+"trnspt_comp_ar": "شركة أركان المشاعر لنقل الحجاج والمعتمرين",
+"device_comp": "BCE"
+}
+},.....]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+			
+			
+        </div>
+        <div class="overflow-hidden content-section" id="live-loc-x-minutes-api">
+            <h2>Errors</h2>
+            <p>
+                min value must be in between 1 min to 24 hours
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		
+		
+		
+		
+		<div class="overflow-hidden content-section" id="loc-not-synced-x-minutes">
+            <h1>3. All AVL Data Not Received in x Minutes</h1>
+            <p>
+			    This API provides list of all AVL Devices not received live location within x minutes, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="loc-not-synced-x-minutes">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://tracking.naqaba.com.sa/api/getDevicesNotSynced?min=600&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+                <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(In minutes)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="loc-not-synced-x-minutes">
+[{
+"imei": 862095054357147,
+"avltm": 1676987628000,
+"location": {
+"type": "Point",
+"coordinates": [39.63957977294922, 22.609296798706055]
+},
+"alt": 2,
+"ang": 56,
+"spd": 0,
+"odata": 3000,
+"createdon": 1678338449406,
+"updatedon": 1678338449406,
+"_id": "640969918610f5232723cdf6",
+"device": {
+"busid": 34194,
+"license_ser_no": 374117610,
+"plate_no": "أ ر أ 6123",
+"engplate_no": "6123 ARA",
+"bus_oper_no": 108,
+"trnspt_comp_id": 38,
+"trnspt_comp_ar": "شركة أركان المشاعر لنقل الحجاج والمعتمرين",
+"device_comp": "BCE"
+}
+},.....]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+			
+			
+        </div>
+        <div class="overflow-hidden content-section" id="loc-not-synced-x-minutes">
+            <h2>Errors</h2>
+            <p>
+                min value must be in between 1 min to 24 hours
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		
+		
+		
+		
+		<div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            <h1>4. All AVL Data Time Error</h1>
+            <p>
+			    This API provides list of all AVL Devices time setting error within x minutes, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://tracking.naqaba.com.sa/api/getDevicesTimeError?min=100&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+                <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(In minutes)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="loc-time-error-x-minutes">
+[{
+"imei": 862095054357147,
+"avltm": 1676987628000,
+"location": {
+"type": "Point",
+"coordinates": [39.63957977294922, 22.609296798706055]
+},
+"alt": 2,
+"ang": 56,
+"spd": 0,
+"odata": 3000,
+"createdon": 1678338449406,
+"updatedon": 1678338449406,
+"_id": "640969918610f5232723cdf6",
+"device": {
+"busid": 34194,
+"license_ser_no": 374117610,
+"plate_no": "أ ر أ 6123",
+"engplate_no": "6123 ARA",
+"bus_oper_no": 108,
+"trnspt_comp_id": 38,
+"trnspt_comp_ar": "شركة أركان المشاعر لنقل الحجاج والمعتمرين",
+"device_comp": "BCE"
+}
+},.....]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+			
+			
+        </div>
+        <div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            <h2>Errors</h2>
+            <p>
+                min value must be in between 1 min to 24 hours
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		
+		<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="geo-live-devices">
+            <h1>5. Live Devices on Geofence Area</h1>
+            <p>
+			    This API provides list of all AVL Devices inside geofence area, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://tracking.naqaba.com.sa/api/getGeofenceDevice?token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+                <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(In minutes)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="loc-time-error-x-minutes">
+[{
+"geo":["M17","M18"],
+"imei": 862095054357147,
+"avltm": 1676987628000,
+"location": {
+"type": "Point",
+"coordinates": [39.63957977294922, 22.609296798706055]
+},
+"alt": 2,
+"ang": 56,
+"spd": 0,
+"odata": 3000,
+"createdon": 1678338449406,
+"updatedon": 1678338449406,
+"_id": "640969918610f5232723cdf6",
+"device": {
+"busid": 34194,
+"license_ser_no": 374117610,
+"plate_no": "أ ر أ 6123",
+"engplate_no": "6123 ARA",
+"bus_oper_no": 108,
+"trnspt_comp_id": 38,
+"trnspt_comp_ar": "شركة أركان المشاعر لنقل الحجاج والمعتمرين",
+"device_comp": "BCE"
+}
+},.....]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+			
+			
+        </div>
+        <div class="overflow-hidden content-section" id="loc-time-error-x-minutes">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->
+		
+		
+		
+		
+		
+		
+		<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="geo-bus-status">
+            <h1>6. Bus is availble on given locations(21)</h1>
+            <p>
+			    Return whether bus is available in a given location or not., to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-status">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://8.213.22.228/api/getBusStatus?plate_no=%D8%A3%20%D8%B1%20%D8%B5%206464&lng=39.94312286376953&accuracy=50000&min=11&lat=21.242998123168945&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 <tr>
+                    <td>min</td>
+                    <td>Integer</td>
+                    <td>10(in minutes)</td>
+                </tr>
+                <tr>
+                    <td>imei</td>
+                    <td>Integer</td>
+                    <td>358480083206997</td>
+                </tr>
+				
+				<tr>
+                    <td>engplate_no(english)</td>
+                    <td>String</td>
+                    <td>6464 XRA</td>
+                </tr>
+				
+				<tr>
+                    <td>plate_no(arabic)</td>
+                    <td>String</td>
+                    <td>أ ر ص 6464</td>
+                </tr>
+				
+				<tr>
+                    <td>latitude(lat)</td>
+                    <td>double</td>
+                    <td>21.353453</td>
+                </tr>
+				<tr>
+                    <td>longitude(lng)</td>
+                    <td>double</td>
+                    <td>39.464564</td>
+                </tr>
+				
+				<tr>
+                    <td>Accuracy(accuracy)</td>
+                    <td>Integer</td>
+                    <td>50000(in meters)</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="geo-bus-status">
+
+{
+	"status": 200,
+	"result": "success",
+	"data": [{
+		"imei": 358480083206997,
+		"avltm": 1680423574847,
+		"location": {
+			"type": "Point",
+			"coordinates": [39.8262533, 21.390069999999998]
+		},
+		"alt": 282,
+		"ang": 97,
+		"spd": 0,
+		"odata": 3001,
+		"createdon": 1680423601339,
+		"updatedon": 1680423601339,
+		"pt": [],
+		"_id": "64293ab118d0975f7bfd9ffb",
+		"device": {
+			"busid": 41984,
+			"license_ser_no": 208762710,
+			"plate_no": "أ ر ص 6464",
+			"engplate_no": "6464 XRA",
+			"bus_oper_no": 524,
+			"trnspt_comp_id": 13,
+			"trnspt_comp_ar": "فرع مؤسسة عبدالإله محمد علي مغربي لنقل الحجاج",
+			"device_comp": "Teltonika FM64/FMB64"
+		}
+	}]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-status">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				<tr>
+                    <td>402</td>
+                    <td>
+                        No bus available in y meters
+                    </td>
+                </tr>
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No location received from the bus in last x minutes
+                    </td>
+                </tr>
+				
+				<tr>
+                    <td>400</td>
+                    <td>
+                        IMEI or plate number not found
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->
+		
+		
+		<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="geo-bus-time-period">
+            <h1>7. Return the list of buses available in a given geofence and time period(13)</h1>
+            <p>
+			    Return the list of buses available in a given geofence and time period. Bus will be counted if any of their location is in the given geofence in a given time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-time-period">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://8.213.22.228/api/getListBusesGeofenceTimePeriod?geocode=S1&start_dt=01-04-2023&start_tm=12:18:00&end_dt=03-04-2023&end_tm=23:18:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 <tr>
+                    <td>geocode</td>
+                    <td>String</td>
+                    <td>S1</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="geo-bus-time-period">
+{
+	"status": 200,
+	"result": "success",
+	"data": [{
+		"imei": 867698043353864,
+		"avltm": 1680450276000,
+		"location": {
+			"type": "Point",
+			"coordinates": [39.816691, 21.430881]
+		},
+		"alt": 283,
+		"ang": 330,
+		"spd": 35,
+		"odata": 3002,
+		"createdon": 1680450274897,
+		"updatedon": 1680450274897,
+		"pt": ["S1", "M25", "M13", "M16", "M8"],
+		"du": 14274,
+		"lpt": ["S1", "M13", "M16", "M8", "M25"]
+	}]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-time-period">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->
+		
+		
+		
+		<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="geo-dur-time-period">
+            <h1>8. Return the duration of the bus stay in a given geofence and time period(10)</h1>
+            <p>
+			    Return the duration of the bus stay in a given geofence and time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="geo-dur-time-period">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://8.213.22.228/api/getListBusesStayGeofenceTimePeriod?imei=867698043945560&geocode=M11&start_dt=01-04-2023&start_tm=12:18:00&end_dt=03-04-2023&end_tm=23:18:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 <tr>
+                    <td>imei</td>
+                    <td>Integer</td>
+                    <td>358480083206997</td>
+                </tr>
+				 <tr>
+                    <td>geocode</td>
+                    <td>String</td>
+                    <td>S1</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="geo-dur-time-period">
+{
+	"status": 200,
+	"result": "success",
+	"data": [{
+		"imei": 867698043945560,
+		"avltm": 1680419444000,
+		"location": {
+			"type": "Point",
+			"coordinates": [39.832682999999996, 21.383778]
+		},
+		"alt": 274,
+		"ang": 91,
+		"spd": 37,
+		"odata": 3002,
+		"createdon": 1680420316837,
+		"updatedon": 1680420316837,
+		"pt": ["M1", "M12", "M22", "M3"],
+		"du": 15681349,
+		"lpt": ["M11", "M4", "M2", "M21"]
+	}]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>du(Duration)</td>
+<td>Integer</td>
+<td>15681349(In milisecond)</td>
+</tr>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="geo-dur-time-period">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->
+		
+		<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="all-trips-count">
+            <h1>9. All trip counts</h1>
+            <p>
+			    This API will calculate total trip counts as per source and destination points for time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="all-trips-count">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">http://8.213.22.228/api/getTripData?imei=867698043936692&src_geo=P5&dest_geo=S5&start_dt=07-04-2023&start_tm=16:00:00&end_dt=07-04-2023&end_tm=23:00:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 <tr>
+                    <td>imei</td>
+                    <td>Integer</td>
+                    <td>358480083206997</td>
+                </tr>
+				 <tr>
+                    <td>src_geo(source point geo code)</td>
+                    <td>String</td>
+                    <td>P5</td>
+                </tr>
+				<tr>
+                    <td>dest_geo(destination point geo code)</td>
+                    <td>String</td>
+                    <td>S5</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="all-trips-count">
+{
+	"status": 200,
+	"result": "success",
+	"imei": "867698043936692",
+	"trip_cnt": 7,
+	"trip_cnt_src_to_dest": 8,
+	"trip_cnt_dest_to_src": 8,
+	"data": [
+		["1680865204548", "4/7/2023, 7:00:04 PM", "S5", [39.830216, 21.424238]],
+		["1680866099529", "4/7/2023, 7:14:59 PM", "P5", [39.862383, 21.425938]],
+		["1680867720184", "4/7/2023, 7:42:00 PM", "S5", [39.830335, 21.424260999999998]],
+		["1680868582900", "4/7/2023, 7:56:22 PM", "P5", [39.862125, 21.42617]],
+		["1680869374870", "4/7/2023, 8:09:34 PM", "S5", [39.830943, 21.424049999999998]],
+		["1680870388736", "4/7/2023, 8:26:28 PM", "P5", [39.862271, 21.426018]],
+		["1680870979494", "4/7/2023, 8:36:19 PM", "S5", [39.831199999999995, 21.423932999999998]],
+		["1680874488957", "4/7/2023, 9:34:48 PM", "P5", [39.862314999999995, 21.425891]],
+		["1680875191539", "4/7/2023, 9:46:31 PM", "S5", [39.83056, 21.424180999999997]],
+		["1680876122643", "4/7/2023, 10:02:02 PM", "P5", [39.862293, 21.426125]],
+		["1680876651605", "4/7/2023, 10:10:51 PM", "S5", [39.831085, 21.42398]],
+		["1680879990562", "4/7/2023, 11:06:30 PM", "P5", [39.86181, 21.425283]],
+		["1680881620728", "4/7/2023, 11:33:40 PM", "S5", [39.830211, 21.424266]],
+		["1680884316586", "4/8/2023, 12:18:36 AM", "P5", [39.862313, 21.426026]],
+		["1680884756142", "4/8/2023, 12:25:56 AM", "S5", [39.830487999999995, 21.424218]],
+		["1680885778275", "4/8/2023, 12:42:58 AM", "P5", [39.86222, 21.425864999999998]],
+		["1680886813194", "4/8/2023, 1:00:13 AM", "S5", [39.83056, 21.424001]]
+	]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>du(Duration)</td>
+<td>Integer</td>
+<td>15681349(In milisecond)</td>
+</tr>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="all-trips-count">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->
+		
+		
+		
+		
+    </div>
+</div>
+<style>
+    .github-corner:hover .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+
+    @keyframes octocat-wave {
+        0%,
+        100% {
+            transform: rotate(0)
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg)
+        }
+        40%,
+        80% {
+            transform: rotate(10deg)
+        }
+    }
+
+    @media (max-width:500px) {
+        .github-corner:hover .octo-arm {
+            animation: none
+        }
+        .github-corner .octo-arm {
+            animation: octocat-wave 560ms ease-in-out
+        }
+    }
+    @media only screen and (max-width:680px){ .github-corner > svg { right: auto!important; left: 0!important; transform: rotate(270deg)!important;}}
+</style>
+<!-- END Github Corner Ribbon - to remove -->
+<script src="js/script.js"></script>
+</body>
+
+</html>

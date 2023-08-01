@@ -1,0 +1,316 @@
+﻿
+<!DOCTYPE html>
+<!--
+ Copyright 2021 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+  <head>
+  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="css/tablestyle.css" rel="stylesheet" type="text/css">
+<link href="css/plugins_map.css" rel="stylesheet" type="text/css">
+<link href="css/map.css" rel="stylesheet" type="text/css">
+ <link href="assets/css/main-style.css" rel="stylesheet" />
+    <style>
+      html,
+      body,
+      #map {
+        margin: 0;
+        height: 100%;
+      }
+	  
+	  
+@font-face {
+font-family: 'Tajawal Regular';
+font-style: normal;
+font-weight: normal;
+src: local('Tajawal Regular'), url('assets/fonts/Tajawal-Regular.woff') format('woff');
+}
+
+/*
+@font-face {
+font-family: 'Tajawal ExtraLight';
+font-style: normal;
+font-weight: normal;
+src: local('Tajawal ExtraLight'), url('assets/fonts/Tajawal-ExtraLight.woff') format('woff');
+}
+*/
+
+@font-face {
+font-family: 'Tajawal Light';
+font-style: normal;
+font-weight: normal;
+src: local('Tajawal Light'), url('assets/fonts/Tajawal-Light.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tajawal Medium';
+font-style: normal;
+font-weight: normal;
+src: local('Tajawal Medium'), url('assets/fonts/Tajawal-Medium.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tajawal Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Tajawal Bold'), url('assets/fonts/Tajawal-Bold.woff') format('woff');
+}
+
+/*
+@font-face {
+font-family: 'Tajawal ExtraBold';
+font-style: normal;
+font-weight: normal;
+src: local('Tajawal ExtraBold'), url('assets/fonts/Tajawal-ExtraBold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tajawal Black';
+font-style: normal;
+font-weight: normal;
+src: local('Tajawal Black'), url('assets/fonts/Tajawal-Black.woff') format('woff');
+}*/
+    </style>
+  </head>
+  <body style="font-family:Tajawal Regular,Tajawal Medium,Tajawal Light">
+  
+  <div id="map"></div>
+  
+  
+ <div style="bottom: 42px;    left: 39px;    position: absolute;">
+	<div class="leaflet-control-zoom leaflet-bar leaflet-control">
+<a class="leaflet-control-zoom-in" href="#" onclick="zoomIn()">+</a>
+<a class="leaflet-control-zoom-in" href="#" onclick="zoomOut()">-</a>
+</div>
+ 
+ </div>  
+ 
+
+
+<div id="map_table" style="display:none;top: 20px;    right: 360px;    position: absolute;border-radius: 20px;background: #fff;padding:0px 00px 20px 0px;max-width:400px;max-height:100%">
+<div><img src="images/bus.jpg" width="400px" style="border-top-left-radius: 20px;border-top-right-radius:20px"/></div>
+<div style="margin-top:-135px;margin-left:10px"><span style="color:#fff" onclick="closeDeviceDetails()">&#10060;</span></div>
+
+<div style="text-align:right;margin-top:65px;padding:5px;color:#fff;font-weight: bold;" id="avlcomp"></div>
+<div style="text-align:right;margin-top:-10px;padding:5px;color:#fff" id="busno"></div>
+<div style="background:#eeeeee;color:#000000;text-align:right;padding:6px">Device details</div>
+
+
+
+<div class="col-6" style="margin-top: 5px" id="legend_data">
+
+</div>
+
+<!--<table style="width:300px" id="avltable"></table>-->
+											
+
+</div> 
+ 
+<div style="top: 20px;    right: 30px;    position: absolute;border-radius: 20px;background: #fff;padding:10px;max-width:300px;max-height:100%">
+<div><span class="dot1" style="float:right;text-align:center;color:#AAAAAA" onclick="closeMenu()">&#10006;</span></div>
+
+<div><img src="images/toplogo.png" width="300px" style="border-top-left-radius: 20px;border-top-right-radius:20px" id="toplogo"/></div>
+<div style="background:#eeeeee;color:#000000;text-align:right;padding:6px"><span id="number-of-dev">-/-</span></div>
+
+
+  
+  <div style="overflow:auto;height:100%;display:block" id="mainmenu">
+
+														<div class="expand_tab collapsible">
+														
+														<div style="float:left;"><span class="dot" style="">&#10070;</span>شركة التتبع</div>
+														<span class="dot" style="float:right;text-align:center;" id="tab_plus0">&#8593</span>
+														</div>
+
+														<div class="content" id="0" style="display:none;margin-top:10px;max-height:200px;overflow:auto">
+														<table  border="0">
+														
+														<tbody id="companylist"></tbody>
+														</table>
+														</div>
+
+														<div class="expand_tab collapsible"  style="margin-top:10px">
+														<div style="float:left;"><span class="dot" style="">&#10070;</span>شركات النقل</div>
+														
+														<span class="dot" style="float:right;text-align:center;" id="tab_plus1">&#8593</span>
+														</div>
+
+														<div class="content" id="1" style="display:none;margin-top:10px;max-height:200px;overflow:auto">
+														<table  border="0">
+														
+														<tbody id="transport_comp_list"></tbody>
+														</table>
+														</div>
+
+														<div class="expand_tab collapsible" style="margin-top:10px">
+														<div style="float:left"><span class="dot" style="">&#10070;</span>أجهزة التتبع</div>
+														<span class="dot" style="float:right;text-align:center;" id="tab_plus2">&#8593</span>
+														</div>
+
+														<div class="content" id="2" style="display:none;margin-top:10px;max-height:200px;overflow:auto">
+														<table  border="0">
+														
+														<tbody id="dev_comp_list"></tbody>
+														</table>
+														</div>
+
+
+														
+
+
+														<div class="expand_tab_1" style="margin-top:10px ;"><div style="float:left;">رقم IMEI</div>
+														
+
+
+														<span style="float:right"><input id="searchimei" name="searchimei" type="text" style="width:200px;padding:5px" maxLength="20" onkeyup="getVehicles()"/></span>
+														</div>
+														
+														<div class="expand_tab_1" style="margin-top:10px"><div style="float:left">رقم الحافلة</div>
+														
+
+
+														<span style="float:right"><input id="searchbus" name="searchbus" type="text" style="width:200px;padding:5px" maxLength="20" onkeyup="getVehicles()"/></span>
+														</div>
+														
+														<div class="expand_tab_1" style="margin-top:10px"><div style="float:left">الرقم التشغيلي للحافلة</div>
+														
+
+
+														<span style="float:right"><input id="searchbus_op_no" name="searchbus_op_no" type="text" style="width:200px;padding:5px" maxLength="20" onkeyup="getVehicles()"/></span>
+														</div>
+														
+														
+
+														
+
+														<div class="content" id="2" style="margin-top:10px;max-height:200px;overflow:auto">
+														<table  border="0">
+														
+														
+
+														<tbody id="buslist"></tbody>
+
+														
+
+														</table>
+														</div>
+
+														
+
+													</div>
+  
+	
+</div>  
+
+<div id="loading_id" style="top: 50%;left: 50%;position: absolute;"><img src="images/loading.gif" width="80px"/></div>
+ 
+	
+	
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+    <script src="defaults.js" type="module"></script>
+    <script src="vendor.js" type="module"></script>
+	
+  </body>
+</html>
+
+<script>
+
+var vehicledata;
+var myVar2;
+var myVar3;
+var loder;
+var map;
+var deviceselected;
+function updateFilterList1(){
+	
+loder.filter_vehicle1(vehicledata);
+}
+
+function getVehicles() {
+	//alert('gggg');
+	if(myVar3!=null)
+		clearTimeout(myVar3);
+  myVar3=setTimeout(function() {loder.filter_vehicle1(vehicledata); }, 500);
+}
+
+
+
+function zoomIn(){
+var z=map.getZoom();
+if(z<22)
+map.setZoom(z+1);
+}
+
+function zoomOut(){
+    var z=map.getZoom();
+if(z>1)
+map.setZoom(z-1);
+}
+
+
+
+</script>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  //coll[i].classList.toggle('expand_tab collapsible');
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+	//var id=coll[i].attributes.getNamedItem('id').value;
+	//alert(e.target.attributes.getNamedItem('id').value);
+	
+    if (content.style.display === "block") {
+
+		var id=content.attributes.getNamedItem('id').value;
+      content.style.display = "none";
+	  var plus=document.getElementById('tab_plus'+id);
+	  plus.innerHTML='&#8593';
+    } else {
+	 var id=content.attributes.getNamedItem('id').value;
+      content.style.display = "block";
+	  var plus=document.getElementById('tab_plus'+id);
+	  plus.innerHTML='&#8594';
+
+    }
+  });
+}
+function closeDeviceDetails(){
+deviceselected=null;
+document.getElementById("map_table").style.display='none';;
+}
+function closeMenu(){
+var mm=document.getElementById("mainmenu");
+if(mm.style.display == 'block'){
+mm.style.display='none';
+document.getElementById("toplogo").width = "100";
+document.getElementById("map_table").style.right='160px';
+}
+else{
+mm.style.display='block';
+document.getElementById("toplogo").width = "300";
+document.getElementById("map_table").style.right='360px';
+}
+}
+
+</script>

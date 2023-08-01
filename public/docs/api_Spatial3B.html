@@ -1,0 +1,174 @@
+<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="Spatial3B">
+            <h1>23. All Round trips (A-B-A) with total time</h1>
+            <p>
+			   Return the list of all Round trips (A-B-A) with total time taken for each round trip for all buses between Source and Destination during a given time period , to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="Spatial3B">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getTTforAllBussesTimePeriodT2?src_geo=P5&dest_geo=S5&start_dt=15-04-2023&start_tm=16:00:00&end_dt=15-04-2023&end_tm=23:00:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				<tr>
+                    <td>src_geo</td>
+                    <td>String</td>
+                    <td>P2</td>
+                </tr>
+				<tr>
+                    <td>dest_geo</td>
+                    <td>String</td>
+                    <td>S5</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>				
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="Spatial3B">
+[{
+	"imei": "867698043936692",
+	"TotalTimeTaken": 1891,
+	"src_code": "P5",
+	"dest_code": "S5",
+	"RoundStartTime": "1681566550744",
+	"RoundEndTime": "1681568442204"
+}, {
+	"imei": "869310066025613",
+	"TotalTimeTaken": 111,
+	"src_code": "P5",
+	"dest_code": "S5",
+	"RoundStartTime": "1681588592085",
+	"RoundEndTime": "1681588704029"
+}]
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>IMEI</td>
+<td>Integer</td>
+<td>861230048859566</td>
+</tr>
+<tr>
+<td>TotalTimeTaken</td>
+<td>Integer</td>
+<td>1891(Seconds)</td>
+</tr>
+<tr>
+<td>src_geo</td>
+<td>String</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>dest_geo</td>
+<td>String</td>
+<td>S5</td>
+</tr>
+<tr>
+<td>RoundStartTime</td>
+<td>Integer</td>
+<td>1681566550744</td>
+</tr>
+<tr>
+<td>RoundEndTime</td>
+<td>Integer</td>
+<td>1681568442204</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="Spatial3B">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->

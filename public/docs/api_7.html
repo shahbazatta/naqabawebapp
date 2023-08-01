@@ -1,0 +1,262 @@
+	<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="geo-bus-time-period">
+            <h1>7. Return the list of buses available in a given geofence and time period</h1>
+            <p>
+			    Return the list of buses available in a given geofence and time period. Bus will be counted if any of their location is in the given geofence in a given time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-time-period">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getListBusesGeofenceTimePeriod?geocode=S1&start_dt=01-04-2023&start_tm=12:18:00&end_dt=03-04-2023&end_tm=23:18:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 <tr>
+                    <td>geocode</td>
+                    <td>String</td>
+                    <td>S1</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="geo-bus-time-period">
+{
+	"status": 200,
+	"result": "success",
+	"data": [{
+		"imei": 867698043353864,
+		"avltm": 1680450276000,
+		"location": {
+			"type": "Point",
+			"coordinates": [39.816691, 21.430881]
+		},
+		"alt": 283,
+		"ang": 330,
+		"spd": 35,
+		"odata": 3002,
+		"createdon": 1680450274897,
+		"updatedon": 1680450274897,
+		"pt": ["S1", "M25", "M13", "M16", "M8"],
+		"du": 14274,
+		"lpt": ["S1", "M13", "M16", "M8", "M25"]
+	}]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="geo-bus-time-period">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->

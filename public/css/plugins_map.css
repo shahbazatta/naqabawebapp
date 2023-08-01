@@ -1,0 +1,2074 @@
+/*
+Requires:
+Loading Bar
+Date Picker
+ui-select
+*/
+
+
+/* Loading Bar */
+#loading-bar,
+#loading-bar-spinner {
+    pointer-events: none;
+    -webkit-pointer-events: none;
+    -webkit-transition: 350ms linear all;
+    -moz-transition: 350ms linear all;
+    -o-transition: 350ms linear all;
+    transition: 350ms linear all
+}
+
+#loading-bar-spinner.ng-enter,
+#loading-bar-spinner.ng-leave.ng-leave-active,
+#loading-bar.ng-enter,
+#loading-bar.ng-leave.ng-leave-active {
+    opacity: 0
+}
+
+#loading-bar-spinner.ng-enter.ng-enter-active,
+#loading-bar-spinner.ng-leave,
+#loading-bar.ng-enter.ng-enter-active,
+#loading-bar.ng-leave {
+    opacity: 1
+}
+
+#loading-bar .bar {
+    -webkit-transition: width 350ms;
+    -moz-transition: width 350ms;
+    -o-transition: width 350ms;
+    transition: width 350ms;
+    background: #ff0000;
+    position: fixed;
+    z-index: 9999999999999999999999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-bottom-right-radius: 1px;
+    border-top-right-radius: 1px
+}
+
+#loading-bar .peg {
+    position: absolute;
+    width: 70px;
+    right: 0;
+    top: 0;
+    height: 2px;
+    opacity: .45;
+    -moz-box-shadow: var(--primary) 1px 0 6px 1px;
+    -ms-box-shadow: var(--primary) 1px 0 6px 1px;
+    -webkit-box-shadow: var(--primary) 1px 0 6px 1px;
+    box-shadow: var(--primary) 1px 0 6px 1px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%
+}
+
+#loading-bar-spinner {
+    display: block;
+    position: fixed;
+    z-index: 10002;
+    top: 10px;
+    left: 10px
+}
+
+#loading-bar-spinner .spinner-icon {
+    width: 14px;
+    height: 14px;
+    border: 2px solid transparent;
+    border-top-color: #ff0000;
+    border-left-color: #ff0000;
+    border-radius: 50%;
+    -webkit-animation: loading-bar-spinner .4s linear infinite;
+    -moz-animation: loading-bar-spinner .4s linear infinite;
+    -ms-animation: loading-bar-spinner .4s linear infinite;
+    -o-animation: loading-bar-spinner .4s linear infinite;
+    animation: loading-bar-spinner .4s linear infinite
+}
+
+@-webkit-keyframes loading-bar-spinner {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-moz-keyframes loading-bar-spinner {
+    0% {
+        -moz-transform: rotate(0);
+        transform: rotate(0)
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-o-keyframes loading-bar-spinner {
+    0% {
+        -o-transform: rotate(0);
+        transform: rotate(0)
+    }
+
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-ms-keyframes loading-bar-spinner {
+    0% {
+        -ms-transform: rotate(0);
+        transform: rotate(0)
+    }
+
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes loading-bar-spinner {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+/* Date Picker */
+.uib-datepicker-popup .btn-default {
+    background: transparent;
+    border: none;
+    font-size: 12px;
+}
+
+.uib-datepicker th {
+    padding-bottom: 10px;
+    padding: 2px 3px 10px;
+}
+
+.uib-datepicker em {
+    font-size: 11px;
+    color: #94a3b0;
+}
+
+.uib-daypicker small {
+    color: #54585d;
+    display: block;
+}
+
+.uib-datepicker-popup .btn {
+    padding: 3px 10px;
+    margin: 0px;
+    text-transform: capitalize;
+    position: relative;
+    font-weight: 400;
+    line-height: 21px;
+    min-height: 28px;
+    min-width: 30px;
+    color: var(--gray-darker);
+}
+
+.uib-datepicker-popup .btn[disabled] {
+    opacity: 0.5;
+}
+
+.uib-left,
+.uib-right {
+    width: 30px;
+    height: 28px;
+}
+
+.uib-datepicker-popup .material-icons {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+}
+
+.uib-datepicker-popup .btn-default:hover {
+    background: #eeeeee;
+    color: #0000ff;
+    box-shadow: none;
+}
+
+.uib-datepicker-popup .btn.active {
+    background: #ff0000;
+    color: #fff;
+}
+
+.uib-datepicker-popup .btn.active span {
+    color: #fff !important;
+}
+
+.uib-datepicker-popup.dropdown-menu {
+    display: block;
+    float: none;
+    margin: 2px 0;
+    padding: 10px;
+    border-radius: 0;
+    direction: ltr;
+    z-index: 9999999;
+}
+
+/*!
+ * ui-select
+ * http://github.com/angular-ui/ui-select
+ * Version: 0.19.8 - 2017-04-18T05:43:43.881Z
+ * License: MIT
+ */
+/* Style when highlighting a search. */
+.ui-select-container.loading {
+    position: relative;
+}
+
+.ui-select-container.loading:after {
+    position: absolute;
+    content: '';
+    background: #fff url("../images/circle-thin-loader.svg") no-repeat;
+    background-size: contain;
+    z-index: 99;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    top: 9px;
+}
+
+.ui-select-highlight {
+    font-weight: 600;
+}
+
+.ui-select-offscreen {
+    clip: rect(0 0 0 0) !important;
+    width: 1px !important;
+    height: 1px !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    outline: 0 !important;
+    left: 0px !important;
+    top: 0px !important;
+}
+
+.ui-select-choices-row:hover {
+    background-color: #f5f5f5;
+}
+
+/* Select2 theme */
+/* Mark invalid Select2 */
+.ng-dirty.ng-invalid>a.select2-choice {
+    border-color: #D44950;
+}
+
+.select2-result-single {
+    padding-left: 0;
+}
+
+.select2-locked>.select2-search-choice-close {
+    display: none;
+}
+
+.select-locked>.ui-select-match-close {
+    display: none;
+}
+
+body>.select2-container.open {
+    z-index: 9999;
+    /* The z-index Select2 applies to the select2-drop */
+}
+
+/* Handle up direction Select2 */
+.ui-select-container[theme="select2"].direction-up .ui-select-match,
+.ui-select-container.select2.direction-up .ui-select-match {
+    border-radius: 4px;
+    /* FIXME hardcoded value :-/ */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.ui-select-container[theme="select2"].direction-up .ui-select-dropdown,
+.ui-select-container.select2.direction-up .ui-select-dropdown {
+    border-radius: 4px;
+    /* FIXME hardcoded value :-/ */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-width: 1px;
+    /* FIXME hardcoded value :-/ */
+    border-top-style: solid;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+    margin-top: -4px;
+    /* FIXME hardcoded value :-/ */
+}
+
+.ui-select-container[theme="select2"].direction-up .ui-select-dropdown .select2-search,
+.ui-select-container.select2.direction-up .ui-select-dropdown .select2-search {
+    margin-top: 4px;
+    /* FIXME hardcoded value :-/ */
+}
+
+.ui-select-container[theme="select2"].direction-up.select2-dropdown-open .ui-select-match,
+.ui-select-container.select2.direction-up.select2-dropdown-open .ui-select-match {
+    border-bottom-color: #ff0000;
+}
+
+.ui-select-container[theme="select2"] .ui-select-dropdown .ui-select-search-hidden,
+.ui-select-container[theme="select2"] .ui-select-dropdown .ui-select-search-hidden input {
+    opacity: 0;
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/* Selectize theme */
+/* Helper class to show styles when focus */
+.selectize-input.selectize-focus {
+    border-color: #007FBB !important;
+}
+
+/* Fix input width for Selectize theme */
+.selectize-control.single>.selectize-input>input {
+    width: 100%;
+}
+
+/* Fix line break when there's at least one item selected with the Selectize theme */
+.selectize-control.multi>.selectize-input>input {
+    margin: 0 !important;
+}
+
+/* Fix dropdown width for Selectize theme */
+.selectize-control>.selectize-dropdown {
+    width: 100%;
+}
+
+/* Mark invalid Selectize */
+.ng-dirty.ng-invalid>div.selectize-input {
+    border-color: #D44950;
+}
+
+/* Handle up direction Selectize */
+.ui-select-container[theme="selectize"].direction-up .ui-select-dropdown {
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+    margin-top: -2px;
+    /* FIXME hardcoded value :-/ */
+}
+
+.ui-select-container[theme="selectize"] input.ui-select-search-hidden {
+    opacity: 0;
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 0;
+}
+
+/* Bootstrap theme */
+/* Helper class to show styles when focus */
+.btn-default-focus .btn {
+    border-color: var(--primary) !important;
+    text-decoration: none;
+}
+
+.ui-select-bootstrap .ui-select-toggle {
+    position: relative;
+}
+
+.ui-select-bootstrap .ui-select-toggle>.caret {
+    position: absolute;
+    height: 10px;
+    top: 50%;
+    left: 14px;
+    font-size: 10px;
+    margin-top: -6px;
+    font-style: normal;
+}
+
+[dir="ltr"] .ui-select-bootstrap .ui-select-toggle>.caret {
+    right: 14px;
+    left: auto;
+}
+
+.ui-select-bootstrap .ui-select-toggle>.caret:before {
+    font-family: 'tafweej';
+    content: '\e90d';
+}
+
+.input-btn .ui-select-bootstrap .ui-select-toggle>.caret {
+    display: none;
+}
+
+/* Fix Bootstrap dropdown position when inside a input-group */
+.input-group>.ui-select-bootstrap.dropdown {
+    /* Instead of relative */
+    position: static;
+}
+
+.input-group>.ui-select-bootstrap>input.ui-select-search.form-control {
+    border-radius: 4px;
+    /* FIXME hardcoded value :-/ */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group>.ui-select-bootstrap>input.ui-select-search.form-control.direction-up {
+    border-radius: 4px !important;
+    /* FIXME hardcoded value :-/ */
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.ui-select-bootstrap .ui-select-search-hidden {
+    opacity: 0;
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.ui-select-bootstrap>.ui-select-match>.btn {
+    text-align: right !important;
+    padding-right: 12px;
+    border: 1px solid var(--default-border);
+    max-height: 38px;
+    background: #fff;
+    border-radius: 4px;
+    padding-top: 5px;
+    font-size: 14px;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+[dir="ltr"] .ui-select-bootstrap>.ui-select-match>.btn {}
+
+[dir="ltr"] .ui-select-bootstrap>.ui-select-match>.btn {
+    text-align: left !important;
+    padding-left: 12px !important;
+    padding-right: 30px;
+}
+
+.ui-select-bootstrap.inline {
+    display: inline-block;
+}
+
+.inline-wrap,
+.inline-wrap .ui-select-placeholder {
+    display: inline-block;
+    line-height: initial;
+}
+
+.ui-select-bootstrap>.ui-select-match>.caret {
+    position: absolute;
+    top: 45%;
+    right: 15px;
+}
+
+/* See Scrollable Menu with Bootstrap 3 http://stackoverflow.com/questions/19227496 */
+.ui-select-bootstrap>.ui-select-choices,
+.ui-select-bootstrap>.ui-select-no-choice {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    max-height: 200px;
+    overflow-x: hidden;
+    margin-top: -1px;
+}
+
+body>.ui-select-bootstrap.open {
+    z-index: 999999999999;
+    /* Standard Bootstrap dropdown z-index */
+    margin: 0 !important;
+}
+
+.ui-select-multiple.ui-select-bootstrap {
+    height: auto;
+    padding: 5px 3px 0 3px;
+}
+
+.ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+    background-color: transparent !important;
+    /* To prevent double background when disabled */
+    border: none;
+    outline: none;
+    height: 1.666666em;
+    margin-bottom: 3px;
+    padding-right: 10px;
+    box-shadow: none !important;
+}
+
+.ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+    font-size: 12px;
+    line-height: 19px;
+    margin-right: 5px;
+}
+
+.ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
+    outline: 0;
+    margin: 0 5px 3px 0;
+    background: var(--light-bg) !important;
+    color: var(--gray-darker);
+    font-weight: 600;
+    border-color: var(--default-border) !important;
+    box-shadow: none !important;
+}
+
+.ui-select-multiple .ui-select-match-item {
+    position: relative;
+}
+
+.ui-select-multiple .ui-select-match-item.dropping .ui-select-match-close {
+    pointer-events: none;
+}
+
+.ui-select-multiple:hover .ui-select-match-item.dropping-before:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 100%;
+    height: 100%;
+    margin-right: 2px;
+    border-left: 1px solid #428bca;
+}
+
+.ui-select-multiple:hover .ui-select-match-item.dropping-after:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    margin-left: 2px;
+    border-right: 1px solid #428bca;
+}
+
+.ui-select-bootstrap .ui-select-choices-row>span,
+.ui-select-no-choice a {
+    cursor: pointer;
+    display: block;
+    padding: 8px 12px !important;
+    clear: both;
+    line-height: 1.42857143;
+    color: #333;
+    font-family: tahoma;
+}
+
+.ui-select-no-choice a {
+    padding-left: 42px !important;
+    color: var(--primary) !important;
+    font-weight: 600;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.ui-select-no-choice i {
+    background-color: #ff0000;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 23px;
+    font-size: 11px;
+    left: 12px;
+    position: absolute;
+    display: inline-block;
+    border-radius: 50%;
+    top: 11px;
+}
+
+.ui-select-bootstrap .ui-select-choices-row>span:hover,
+.ui-select-bootstrap .ui-select-choices-row>span:focus {
+    text-decoration: none;
+    color: #262626;
+    background-color: #f5f5f5;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active>span {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    background-color: #ff0000;
+}
+
+.ui-select-choices-row.active .text-muted {
+    color: #fff;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.disabled>span,
+.ui-select-bootstrap .ui-select-choices-row.active.disabled>span {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: #fff;
+}
+
+/* fix hide/show angular animation */
+.ui-select-match.ng-hide-add,
+.ui-select-search.ng-hide-add {
+    display: none !important;
+}
+
+/* Mark invalid Bootstrap */
+.ui-select-bootstrap.ng-dirty.ng-invalid>button.btn.ui-select-match {
+    border-color: #D44950;
+}
+
+/* Handle up direction Bootstrap */
+.ui-select-container[theme="bootstrap"].direction-up .ui-select-dropdown {
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.ui-select-bootstrap .ui-select-match-text {
+    width: 100%;
+    padding-left: 1em;
+}
+
+[dir="ltr"] .ui-select-bootstrap .ui-select-match-text {
+    padding-right: 1em;
+    padding-left: 0px;
+}
+
+.ui-select-bootstrap .ui-select-match-text span {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 26px;
+    font-weight: 500;
+    color: #333435;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ui-select-placeholder {
+    line-height: 26px;
+    color: #6c757d;
+}
+
+.inline .ui-select-placeholder {
+    line-height: 0px;
+}
+
+.table .ui-select-bootstrap:not(.inline) .ui-select-placeholder,
+.table .ui-select-bootstrap:not(.inline) .ui-select-match-text span {
+    line-height: 23px;
+    min-height: 45px;
+}
+
+.ui-select-bootstrap .ui-select-toggle>a.btn {
+    position: absolute;
+    height: 10px;
+    left: 10px;
+    margin-top: -2px;
+}
+
+.ui-select-search {
+    width: 100% !important;
+    line-height: 18px;
+}
+
+
+/* Echart */
+.echart-init {
+    transition: opacity .3s ease;
+    position: relative;
+}
+
+.echart-init:before {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    height: 100%;
+    content: '';
+}
+
+.echart-init:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -35px;
+    margin-top: -10px;
+    width: 70px;
+    height: 40px;
+    background-size: contain;
+    z-index: 3;
+    background-image: url('../images/circle-thin-loader.svg');
+    background-repeat: no-repeat;
+}
+
+.dark-mode .echart-init:before {
+    background: var(--dark-bg-light);
+}
+
+.dark-mode .echart-init:after {}
+
+.echart-init.active:before,
+.echart-init.active:after {
+    display: none;
+}
+
+/* Flash Message */
+flash-message {
+    position: fixed;
+    top: 8px;
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 99999999999999999999999999;
+    text-align: center;
+}
+
+flash-message .alert {
+    padding: 15px 15px 15px 40px !important;
+    line-height: 20px;
+    display: inline-block;
+    font-weight: bold;
+    border-bottom-width: 2px;
+}
+
+/* Leaflet */
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane>svg,
+.leaflet-pane>canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.leaflet-container {
+    overflow: hidden;
+}
+
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+    background: transparent;
+}
+
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+    width: 1600px;
+    height: 1600px;
+    -webkit-transform-origin: 0 0;
+}
+
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+    display: block;
+}
+
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg,
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+    max-width: none !important;
+    max-height: none !important;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+    -ms-touch-action: pan-x pan-y;
+    touch-action: pan-x pan-y;
+}
+
+.leaflet-container.leaflet-touch-drag {
+    -ms-touch-action: pinch-zoom;
+    /* Fallback for FF which doesn't support pinch-zoom */
+    touch-action: none;
+    touch-action: pinch-zoom;
+}
+
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+.leaflet-container {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.leaflet-container a {
+    -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+
+.leaflet-tile {
+    filter: inherit;
+    visibility: hidden;
+}
+
+.leaflet-tile-loaded {
+    visibility: inherit;
+}
+
+.leaflet-zoom-box {
+    width: 0;
+    height: 0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 800;
+}
+
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+    -moz-user-select: none;
+}
+
+.leaflet-pane {
+    z-index: 400;
+}
+
+.leaflet-tile-pane {
+    z-index: 200;
+}
+
+.leaflet-overlay-pane {
+    z-index: 400;
+}
+
+.leaflet-shadow-pane {
+    z-index: 500;
+}
+
+.leaflet-marker-pane {
+    z-index: 600;
+}
+
+.leaflet-tooltip-pane {
+    z-index: 650;
+}
+
+.leaflet-popup-pane {
+    z-index: 700;
+}
+
+.leaflet-map-pane canvas {
+    z-index: 100;
+}
+
+.leaflet-map-pane svg {
+    z-index: 200;
+}
+
+.leaflet-vml-shape {
+    width: 1px;
+    height: 1px;
+}
+
+.lvml {
+    behavior: url(#default#VML);
+    display: inline-block;
+    position: absolute;
+}
+
+
+/* control positioning */
+
+.leaflet-control {
+    position: relative;
+    left: 0;
+    z-index: 800;
+    pointer-events: visiblePainted;
+    /* IE 9-10 doesn't have auto */
+    pointer-events: auto;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+body:not(.is-embed) .leaflet-top {
+    /*top: 5px;*/
+    left: 10px;
+}
+
+
+
+.leaflet-right {
+    right: 0;
+}
+
+.leaflet-bottom {
+    bottom: 0;
+}
+
+.leaflet-left {
+    left: 0;
+}
+
+.leaflet-control {
+    float: left;
+    clear: both;
+}
+
+.leaflet-right .leaflet-control {
+    float: right;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 15px;
+}
+
+.leaflet-bottom .leaflet-control {
+    margin-bottom: 10px;
+}
+
+.leaflet-left .leaflet-control {
+    margin-left: 10px;
+}
+
+.is-embed .leaflet-left .leaflet-control {
+    margin-left: 20px;
+}
+
+.leaflet-right .leaflet-control {
+    margin-right: 10px;
+}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-tile {
+    will-change: opacity;
+}
+
+.leaflet-fade-anim .leaflet-popup {
+    opacity: 0;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+    opacity: 1;
+}
+
+.leaflet-zoom-animated {
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+    will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+    -webkit-transition: -webkit-transform 0.25s cubic-bezier(0, 0, 0.25, 1);
+    -moz-transition: -moz-transform 0.25s cubic-bezier(0, 0, 0.25, 1);
+    transition: transform 0.25s cubic-bezier(0, 0, 0.25, 1);
+}
+
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+    visibility: hidden;
+}
+
+
+/* cursors */
+
+.leaflet-interactive {
+    cursor: pointer;
+}
+
+.leaflet-grab {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+    cursor: crosshair;
+}
+
+.leaflet-popup-pane,
+.leaflet-control {
+    cursor: auto;
+}
+
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+    cursor: move;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane>svg path,
+.leaflet-tile-container {
+    pointer-events: none;
+}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane>svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+    pointer-events: visiblePainted;
+    /* IE 9-10 doesn't have auto */
+    pointer-events: auto;
+}
+
+/* visual tweaks */
+
+.leaflet-container {
+    background: #ddd;
+    outline: 0;
+}
+
+.dark-mode .leaflet-container {
+    background: #070a0d;
+}
+
+/* general toolbar styles */
+
+body:not(.dark-mode) .leaflet-bar {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0);
+    border-radius: 10px;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+    background-color: #fff;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-indent: -1px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #0000ff;
+    font-size: 18px;
+}
+
+.dark-mode .leaflet-bar a {
+    background: var(--dark-bg-lighter);
+    color: var(--dark-text-light);
+}
+
+.dark-mode .leaflet-bar a:hover {
+    background: var(--dark-bg-lighter-light);
+    color: #fff;
+}
+
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.leaflet-bar a:hover {
+    color: #0000ff;
+    background: #eeeeee;
+}
+
+.leaflet-bar a:active {
+    color: #0000ff;
+    background: #dae2ea;
+}
+
+
+
+.dark-mode .leaflet-bar a:active {
+    background-color: var(--dark-bg-lighter-light-lighter);
+    color: #fff;
+}
+
+.leaflet-bar a:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.leaflet-bar a:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: none;
+}
+
+body:not(.dark-mode) .leaflet-bar a.leaflet-disabled {
+    cursor: default;
+    color: #eeeeee;
+    background: #fff !important;
+}
+
+.dark-mode .leaflet-bar a.leaflet-disabled {
+    background: var(--dark-bg-light);
+    color: var(--dark-bg-lighter-light-lighter);
+    cursor: default;
+}
+
+.leaflet-touch .leaflet-bar a {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.leaflet-touch .leaflet-bar a:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.leaflet-touch .leaflet-bar a:last-child {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+    text-indent: 1px;
+}
+
+.leaflet-touch .leaflet-control-zoom-in,
+.leaflet-touch .leaflet-control-zoom-out {
+    font-size: 22px;
+}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    border-radius: 5px;
+}
+
+.leaflet-control-layers-toggle {
+    width: 36px;
+    height: 36px;
+}
+
+.leaflet-retina .leaflet-control-layers-toggle {
+    background-size: 26px 26px;
+}
+
+.leaflet-touch .leaflet-control-layers-toggle {
+    width: 44px;
+    height: 44px;
+}
+
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+    display: none;
+}
+
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+    display: block;
+    position: relative;
+}
+
+.leaflet-control-layers-expanded {
+    padding: 6px 10px 6px 6px;
+    color: #333;
+    background: #fff;
+}
+
+.leaflet-control-layers-scrollbar {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 5px;
+}
+
+.leaflet-control-layers-selector {
+    margin-top: 2px;
+    position: relative;
+    top: 1px;
+}
+
+.leaflet-control-layers label {
+    display: block;
+}
+
+.leaflet-control-layers-separator {
+    height: 0;
+    border-top: 1px solid #ddd;
+    margin: 5px -10px 5px -6px;
+}
+
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+    background: #fff;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+    padding: 0 5px;
+    color: #333;
+}
+
+.leaflet-control-attribution a {
+    text-decoration: none;
+}
+
+.leaflet-control-attribution a:hover {
+    text-decoration: underline;
+}
+
+.leaflet-container .leaflet-control-attribution,
+.leaflet-container .leaflet-control-scale {
+    font-size: 11px;
+}
+
+.leaflet-left .leaflet-control-scale {
+    margin-left: 5px;
+}
+
+.leaflet-bottom .leaflet-control-scale {
+    margin-bottom: 5px;
+}
+
+.leaflet-control-scale-line {
+    border: 2px solid #777;
+    border-top: none;
+    line-height: 1.1;
+    padding: 2px 5px 1px;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    background: #fff;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.leaflet-control-scale-line:not(:first-child) {
+    border-top: 2px solid #777;
+    border-bottom: none;
+    margin-top: -2px;
+}
+
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+    border-bottom: 2px solid #777;
+}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+    box-shadow: none;
+}
+
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+
+
+/* popup */
+
+.leaflet-popup {
+    position: fixed;
+    z-index: 999999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 16px 30px 15px;
+    text-align: right;
+    border-radius: 12px;
+}
+
+.leaflet-popup-content {
+    line-height: 1.4;
+}
+
+.is-embed .leaflet-popup-content {
+    min-width: 300px;
+}
+
+.map-measure-popup .leaflet-popup-content {
+    min-width: 330px;
+}
+
+
+.map-icon-absolute .leaflet-popup-content {
+    min-width: initial;
+    width: initial !important;
+}
+
+.dark-mode .leaflet-popup-content hr {
+    border-color: var(--dark-bg-lighter);
+}
+
+.leaflet-popup-content p {
+    margin: 18px 0;
+}
+
+.leaflet-popup-tip-container {
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    left: 50%;
+    margin-left: -20px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.leaflet-popup-tip {
+    width: 17px;
+    height: 17px;
+    padding: 1px;
+
+    margin: -10px auto 0;
+
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: white;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .leaflet-popup-content-wrapper,
+.dark-mode .leaflet-popup-tip {
+   /* background: var(--dark-bg-light);*/
+    color: #000000;/*var(--dark-text-lighter-light);*/
+    box-shadow: none;
+    /*border: 1px solid var(--dark-bg-lighter);*/
+}
+
+
+.leaflet-popup-content-wrapper .divider {
+    margin-left: -10px;
+    margin-right: -30px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    color: var(--gray-lighter);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+    color: #0000ff;
+    background: #eeeeee;
+}
+
+.dark-mode .leaflet-container a.leaflet-popup-close-button:hover {
+    background: var(--dark-bg-lighter-light);
+    color: var(--dark-text-lighter-light);
+}
+
+.dark-mode .leaflet-container a.leaflet-popup-close-button:active {
+    background: var(--dark-bg-lighter-light-lighter);
+}
+
+.leaflet-container a.leaflet-popup-close-button:active {
+    color: #0000ff;
+    background: #dae2ea;
+}
+
+.leaflet-popup-scrolled {
+    overflow: auto;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+    zoom: 1;
+}
+
+.leaflet-oldie .leaflet-popup-tip {
+    width: 24px;
+    margin: 0 auto;
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+}
+
+.leaflet-oldie .leaflet-popup-tip-container {
+    margin-top: -1px;
+}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+    border: 1px solid #999;
+}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+    background: #fff;
+    border: 1px solid #666;
+}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+    position: absolute;
+    padding: 6px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #222;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.leaflet-tooltip.leaflet-clickable {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+    position: absolute;
+    pointer-events: none;
+    border: 6px solid transparent;
+    background: transparent;
+    content: "";
+}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+    margin-top: 6px;
+}
+
+.leaflet-tooltip-top {
+    margin-top: -6px;
+}
+
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+    left: 50%;
+    margin-left: -6px;
+}
+
+.leaflet-tooltip-top:before {
+    bottom: 0;
+    margin-bottom: -12px;
+    border-top-color: #fff;
+}
+
+.leaflet-tooltip-bottom:before {
+    top: 0;
+    margin-top: -12px;
+    margin-left: -6px;
+    border-bottom-color: #fff;
+}
+
+.leaflet-tooltip-left {
+    margin-left: -6px;
+}
+
+.leaflet-tooltip-right {
+    margin-left: 6px;
+}
+
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+    top: 50%;
+    margin-top: -6px;
+}
+
+.leaflet-tooltip-left:before {
+    right: 0;
+    margin-right: -12px;
+    border-left-color: #fff;
+}
+
+.leaflet-tooltip-right:before {
+    left: 0;
+    margin-left: -12px;
+    border-right-color: #fff;
+}
+
+/* Leaflet draw css */
+.is-embed .leaflet-draw {
+    display: none;
+}
+
+.leaflet-draw-section {
+    position: relative
+}
+
+.leaflet-draw-toolbar {
+    margin-top: 12px
+}
+
+
+.leaflet-draw-toolbar-top {
+    margin-top: 0
+}
+
+.leaflet-draw-toolbar-notop a:first-child {
+    color: #0000ff;
+}
+
+
+.leaflet-draw-toolbar-button-enabled {
+    background: #dae2ea !important;
+    color: var(--gray-base) !important;
+}
+
+.dark-mode .leaflet-draw-toolbar-button-enabled {
+    background: var(--primary) !important;
+    color: #fff !important;
+}
+
+.leaflet-draw a {
+    display: block;
+    font-size: 13px;
+    color: var(--gray-lighter);
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+}
+
+.leaflet-draw>a:hover {
+    color: #0000ff;
+}
+
+.leaflet-draw a:before {
+    content: '';
+    position: absolute;
+    font-family: 'tafweej';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.leaflet-draw a .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0
+}
+
+.leaflet-draw-actions {
+    display: none;
+    list-style: none;
+    background: #fff;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+    padding: 0;
+    position: absolute;
+    left: 40px;
+    top: 0;
+    white-space: nowrap;
+}
+
+.dark-mode .leaflet-draw-actions {
+    background: var(--dark-bg-lighter);
+    box-shadow: none;
+}
+
+.leaflet-touch .leaflet-draw-actions {
+    left: 32px
+}
+
+.leaflet-right .leaflet-draw-actions {
+    right: 26px;
+    left: auto
+}
+
+.leaflet-touch .leaflet-right .leaflet-draw-actions {
+    right: 32px;
+    left: auto
+}
+
+.leaflet-draw-actions li {
+    display: inline-block
+}
+
+.leaflet-draw-actions li:first-child a {
+    border-left: 0;
+    border-radius: 0 25px 25px 0;
+}
+
+.leaflet-draw-actions li:last-child a {
+    -webkit-border-radius: 25px 0 0 25px;
+    border-radius: 25px 0 0 25px;
+}
+
+.leaflet-right .leaflet-draw-actions li:last-child a {
+    -webkit-border-radius: 0;
+    border-radius: 0
+}
+
+.leaflet-right .leaflet-draw-actions li:first-child a {
+    -webkit-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px
+}
+
+.leaflet-draw-actions a {
+    color: var(--gray-dark);
+    line-height: 28px;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 28px;
+    font-size: 12px;
+}
+
+.dark-mode .leaflet-draw-actions a {
+    color: #fff;
+}
+
+.leaflet-touch .leaflet-draw-actions a {
+    font-size: 12px;
+    line-height: 30px;
+    height: 30px
+}
+
+.leaflet-draw-actions-bottom {
+    margin-top: 6px;
+}
+
+.leaflet-draw-actions-top {
+    margin-top: 6px;
+}
+
+.leaflet-draw-actions-top a,
+.leaflet-draw-actions-bottom a {
+    height: 25px;
+    line-height: 26px;
+}
+
+.leaflet-draw-actions a:hover {
+    background-color: #eeeeee;
+    color: #0000ff;
+}
+
+.dark-mode .leaflet-draw-actions a:hover {
+    background-color: var(--dark-bg-lighter-light);
+    color: #fff;
+}
+
+.leaflet-draw-actions-top.leaflet-draw-actions-bottom a {
+    height: 26px;
+    line-height: 26px
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-polygon:before {
+    content: '\e901';
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-polygon:before {
+    content: '\e901';
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-rectangle:before {
+    content: "\e902";
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-rectangle:before {
+    content: "\e902";
+}
+
+.leaflet-draw-toolbar .leaflet-draw-edit-edit:before {
+    content: "\e914";
+}
+
+.leaflet-draw-toolbar .leaflet-draw-edit-remove:before {
+    content: "\e915";
+}
+
+
+.leaflet-mouse-marker {
+    background-color: #fff;
+    cursor: crosshair
+}
+
+.leaflet-draw-tooltip {
+    background: #363636;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid transparent;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    color: #fff;
+    margin-left: 20px;
+    margin-top: -21px;
+    padding: 4px 8px;
+    position: absolute;
+    visibility: hidden;
+    white-space: nowrap;
+    z-index: 6
+}
+
+.leaflet-draw-tooltip:after {
+    border-left: 6px solid black;
+    border-left-color: rgb(52, 58, 64);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    content: "";
+    position: absolute;
+    top: 7px;
+    right: -7px
+}
+
+.leaflet-error-draw-tooltip {
+    background-color: #f2dede;
+    border: 1px solid #e6b6bd;
+    color: #b94a48
+}
+
+.leaflet-error-draw-tooltip:before {
+    border-right-color: #e6b6bd
+}
+
+.leaflet-draw-tooltip-single {
+    margin-top: -12px
+}
+
+.leaflet-draw-tooltip-subtext {
+    color: #f8d5e4
+}
+
+.leaflet-draw-guide-dash {
+    font-size: 1%;
+    opacity: .6;
+    position: absolute;
+    width: 5px;
+    height: 5px
+}
+
+.leaflet-edit-marker-selected {
+    background-color: rgba(254, 87, 161, 0.1);
+    border: 4px dashed rgba(254, 87, 161, 0.6);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+
+    box-sizing: content-box
+}
+
+.leaflet-edit-move {
+    cursor: move
+}
+
+.leaflet-edit-resize {
+    cursor: pointer
+}
+
+.leaflet-oldie .leaflet-draw-toolbar {
+    border: 1px solid #999
+}
+
+.leaflet-interactive[fill="#000"] {
+    cursor: unset;
+}
+
+/* Leaflet Measure */
+.leaflet-control-measure h3,
+.leaflet-measure-resultpopup h3 {
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--light-border);
+    font-size: 16px;
+}
+
+.dark-mode .leaflet-control-measure h3,
+.dark-mode .leaflet-measure-resultpopup h3 {
+    border-color: var(--dark-bg-lighter-light);
+}
+
+.leaflet-control-measure p,
+.leaflet-measure-resultpopup p {
+    margin: 10px 0 0;
+    line-height: 1.5em;
+    font-size: 15px;
+}
+
+
+
+.leaflet-control-measure p:first-child,
+.leaflet-measure-resultpopup p:first-child {
+    margin-top: 0
+}
+
+.leaflet-control-measure .tasks,
+.leaflet-measure-resultpopup .tasks {
+    margin: 20px 0 0;
+    text-align: right;
+    list-style: none;
+    list-style-image: none;
+}
+
+.dark-mode .leaflet-control-measure .tasks,
+.dark-mode .leaflet-measure-resultpopup .tasks {
+    border-color: var(--dark-bg-lighter-light);
+}
+
+.leaflet-control-measure .tasks li,
+.leaflet-measure-resultpopup .tasks li {
+    display: inline;
+}
+
+.leaflet-control-measure .tasks li:last-child,
+.leaflet-measure-resultpopup .tasks li:last-child {
+    margin-right: 0
+}
+
+.leaflet-control-measure .coorddivider,
+.leaflet-measure-resultpopup .coorddivider {
+    color: #999
+}
+
+.leaflet-control-measure {
+    max-width: 280px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+@media screen and (max-height: 657px) {
+    .leaflet-control-measure {
+        max-width: 280px;
+        background: #fff;
+        border-radius: 10px;
+        max-height: 324px;
+        overflow-y: auto;
+    }
+}
+
+.dark-mode .leaflet-control-measure {
+    background: var(--dark-bg-light);
+    color: var(--dark-text-lighter-light);
+}
+
+.leaflet-control-measure .leaflet-control-measure-toggle,
+.leaflet-control-measure .leaflet-control-measure-toggle:hover {
+    border: 0;
+    text-indent: 100%;
+    border-radius: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.leaflet-control-measure .leaflet-control-measure-toggle:before {
+    content: "\e926";
+    position: absolute;
+    font-family: 'tafweej';
+    top: 0;
+    left: 25px;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle,
+.leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle:hover {
+    border-radius: 2px
+}
+
+
+.leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle,
+.leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle:hover {
+    background-size: 16px 16px
+}
+
+.leaflet-control-measure .startprompt h3 {
+    margin-bottom: 10px
+}
+
+.leaflet-control-measure .startprompt .tasks {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    text-align: left
+}
+
+.leaflet-control-measure .leaflet-control-measure-interaction {
+    padding: 15px 20px;
+}
+
+.leaflet-control-measure .results .group {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dotted #eaeaea
+}
+
+.leaflet-control-measure .results .group:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0
+}
+
+.leaflet-control-measure .results .heading {
+    margin-left: 5px;
+    color: var(--gray-lighter);
+    font-weight: bold;
+}
+
+.dark-mode .leaflet-control-measure .results .heading {
+    color: #fff;
+}
+
+.leaflet-control-measure a.start {
+    display: inline-block;
+    width: 100%;
+    padding: 1px 10px;
+    height: auto;
+    margin: 0 2px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    text-decoration: none;
+}
+
+
+
+
+
+.leaflet-control-measure a.start:hover {
+    opacity: .8;
+    text-decoration: none
+}
+
+
+
+.leaflet-control-measure a.cancel:hover {
+    opacity: .8;
+    text-decoration: none;
+}
+
+.leaflet-control-measure a.finish,
+.leaflet-control-measure a.cancel,
+.leaflet-measure-resultpopup a.deletemarkup,
+.leaflet-measure-resultpopup a.zoomto {
+    display: inline-block;
+    border: 1px solid #ff0000;
+    width: auto;
+    line-height: 35px;
+    height: auto;
+    padding: 0px 14px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #ff0000;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.dark-mode .leaflet-measure-resultpopup a.zoomto,
+.dark-mode .leaflet-measure-resultpopup a.deletemarkup {
+    background: var(--dark-bg-lighter);
+    border: 0;
+}
+
+.dark-mode .leaflet-control-measure a.finish,
+.dark-mode .leaflet-control-measure a.cancel,
+.dark-mode .leaflet-measure-resultpopup a.deletemarkup,
+.dark-mode .leaflet-measure-resultpopup a.zoomto {
+    color: #fff;
+}
+
+.leaflet-control-measure a,
+.leaflet-control-measure a:hover {
+    color: #ff0000;
+}
+
+.dark-mode .leaflet-control-measure a,
+.dark-mode .leaflet-control-measure a:hover {
+    color: #fff;
+}
+
+.dark-mode .leaflet-control-measure a {
+    border: 0;
+}
+
+.leaflet-measure-resultpopup a.zoomto:hover {
+    opacity: .8;
+    text-decoration: none
+}
+
+.leaflet-measure-resultpopup a.deletemarkup:hover {
+    opacity: .8;
+    text-decoration: none;
+}
+
+.leaflet-measure-resultpopup {
+    opacity: 0 !important;
+}

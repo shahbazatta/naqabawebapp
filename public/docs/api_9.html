@@ -1,0 +1,283 @@
+<!-------------------->
+		
+		
+		<div class="overflow-hidden content-section" id="trips-count-avl">
+            <h1>9. Trip counts for A Device</h1>
+            <p>
+			    This API will calculate total trip counts as per source and destination points for time period, to access this api required api key or token.
+            </p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="trips-count-avl">
+            <h2>Access Url</h2>
+            <p>
+                To get characters you need to make a GET call to the following url :<br>
+                <code class="higlighted break-word">https://tracking.naqaba.com.sa/api/getTripData?imei=867698043936692&src_geo=P5&dest_geo=S5&start_dt=15-04-2023&start_tm=16:00:00&end_dt=15-04-2023&end_tm=23:00:00&token=cebc8011932a85c60a7e079b840bf083161812d3</code>
+            </p>
+            <br>
+            <h4>QUERY PARAMETERS</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>token</td>
+                    <td>String</td>
+                    <td>cebc8011932a85c60a7e079b840bf083161812d3</td>
+                </tr>
+				 <tr>
+                    <td>imei</td>
+                    <td>Integer</td>
+                    <td>358480083206997</td>
+                </tr>
+				 <tr>
+                    <td>src_geo(source point geo code)</td>
+                    <td>String</td>
+                    <td>P5</td>
+                </tr>
+				<tr>
+                    <td>dest_geo(destination point geo code)</td>
+                    <td>String</td>
+                    <td>S5</td>
+                </tr>
+                <tr>
+                    <td>Start Date(start_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>Start time(start_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+				
+				<tr>
+                    <td>End Date(end_dt)</td>
+                    <td>String</td>
+                    <td>01-04-2023</td>
+                </tr>
+				
+				 <tr>
+                    <td>End time(end_tm)</td>
+                    <td>String</td>
+                    <td>00:00</td>
+                </tr>
+                
+                </tbody>
+            </table>
+			
+			<h2>Response</h2>
+            <p>
+<pre><code class="json" id="trips-count-avl">
+{
+	"status": 200,
+	"result": "success",
+	"imei": "867698043936692",
+	"trip_cnt": 7,
+	"trip_cnt_src_to_dest": 8,
+	"trip_cnt_dest_to_src": 8,
+	"data": [
+		["1680865204548", "4/7/2023, 7:00:04 PM", "S5", [39.830216, 21.424238]],
+		["1680866099529", "4/7/2023, 7:14:59 PM", "P5", [39.862383, 21.425938]],
+		["1680867720184", "4/7/2023, 7:42:00 PM", "S5", [39.830335, 21.424260999999998]],
+		["1680868582900", "4/7/2023, 7:56:22 PM", "P5", [39.862125, 21.42617]],
+		["1680869374870", "4/7/2023, 8:09:34 PM", "S5", [39.830943, 21.424049999999998]],
+		["1680870388736", "4/7/2023, 8:26:28 PM", "P5", [39.862271, 21.426018]],
+		["1680870979494", "4/7/2023, 8:36:19 PM", "S5", [39.831199999999995, 21.423932999999998]],
+		["1680874488957", "4/7/2023, 9:34:48 PM", "P5", [39.862314999999995, 21.425891]],
+		["1680875191539", "4/7/2023, 9:46:31 PM", "S5", [39.83056, 21.424180999999997]],
+		["1680876122643", "4/7/2023, 10:02:02 PM", "P5", [39.862293, 21.426125]],
+		["1680876651605", "4/7/2023, 10:10:51 PM", "S5", [39.831085, 21.42398]],
+		["1680879990562", "4/7/2023, 11:06:30 PM", "P5", [39.86181, 21.425283]],
+		["1680881620728", "4/7/2023, 11:33:40 PM", "S5", [39.830211, 21.424266]],
+		["1680884316586", "4/8/2023, 12:18:36 AM", "P5", [39.862313, 21.426026]],
+		["1680884756142", "4/8/2023, 12:25:56 AM", "S5", [39.830487999999995, 21.424218]],
+		["1680885778275", "4/8/2023, 12:42:58 AM", "P5", [39.86222, 21.425864999999998]],
+		["1680886813194", "4/8/2023, 1:00:13 AM", "S5", [39.83056, 21.424001]]
+	]
+}
+</code></pre>
+            </p>
+            <br>
+			
+<h4>PARAMETERS</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>du(Duration)</td>
+<td>Integer</td>
+<td>15681349(In milisecond)</td>
+</tr>
+<tr>
+<td>geo</td>
+<td>Array</td>
+<td>List of all geofence Ids</td>
+</tr>
+<tr>
+<td>imei</td>
+<td>Integer</td>
+<td>862095054357147 (Unique ID of AVL Devices 15 digits Number)</td>
+</tr>
+<tr>
+<td>avltm</td>
+<td>Integer</td>
+<td>1676987628000 (In Miliseconds)</td>
+</tr>
+
+<tr>
+<td>location: type</td>
+<td>String</td>
+<td>Point</td>
+</tr>
+
+<tr>
+<td>location: coordinates</td>
+<td>Double-Array</td>
+<td>[39.63957977294922, 22.609296798706055](longitude, latitude)</td>
+</tr>
+
+<tr>
+<td>alt: Altitude</td>
+<td>Integer/float</td>
+<td>2(in Meters)</td>
+</tr>
+
+<tr>
+<td>ang: Angle</td>
+<td>Integer/float</td>
+<td>56 (in meters)</td>
+</tr>
+
+<tr>
+<td>spd: Speed</td>
+<td>Integer/float</td>
+<td>0 (in kilometer/hour)</td>
+</tr>
+
+<tr>
+<td>odata</td>
+<td>Integer</td>
+<td>---</td>
+</tr>
+
+<tr>
+<td>createdon</td>
+<td>Integer</td>
+<td>AVL Data saved time in milisecond</td>
+</tr>
+
+<tr>
+<td>updatedon</td>
+<td>Integer</td>
+<td>AVL Data last updated time in milisecond</td>
+</tr>
+
+<tr>
+<td>device</td>
+<td>Json</td>
+<td>AVL Davice details</td>
+</tr>
+
+<tr>
+<td>device: busid</td>
+<td>Integer</td>
+<td>Bus number</td>
+</tr>
+
+<tr>
+<td>device: license_ser_no</td>
+<td>Integer</td>
+<td>Bus serial number</td>
+</tr>
+
+<tr>
+<td>device: plate_no</td>
+<td>String</td>
+<td>Bus plate number in arabic text</td>
+</tr>
+
+<tr>
+<td>device: engplate_no</td>
+<td>String</td>
+<td>Bus plate number in english text</td>
+</tr>
+
+<tr>
+<td>device: bus_oper_no</td>
+<td>Integer</td>
+<td>Bus operation number</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_id</td>
+<td>Integer</td>
+<td>Bus Transport company Id</td>
+</tr>
+
+<tr>
+<td>device: trnspt_comp_ar</td>
+<td>String</td>
+<td>Bus Transport company name in Arabic</td>
+</tr>
+
+<tr>
+<td>device: device_comp</td>
+<td>String</td>
+<td>AVL Device model or company name</td>
+</tr>
+
+</tbody>
+</table>		
+						
+        </div>
+        <div class="overflow-hidden content-section" id="trips-count-avl">
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Error Code</th>
+                    <th>Meaning</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>404</td>
+                    <td>
+                        Bad Request : Invalid argument (invalid request payload)
+                    </td>
+                </tr>
+                <tr>
+                    <td>403</td>
+                    <td>
+                        Forbidden : Permission denied (e.g. invalid token).
+                    </td>
+                </tr>
+				
+				
+				
+				<tr>
+                    <td>401</td>
+                    <td>
+                        No record found
+                    </td>
+                </tr>
+				
+				
+                
+                </tbody>
+            </table>
+        </div>
+		<!------------------->

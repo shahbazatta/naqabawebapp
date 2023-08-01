@@ -1,0 +1,1213 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+ <script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script>
+    <style>
+     div
+{
+    
+    font-size: 20px;
+    color: #000000;
+    padding: 10px;
+    display: flex;
+    
+    height: 420px;
+    width:30%; 
+	overflow:auto;
+	border:1px solid gray;
+}
+.one
+{
+    background-color:#eeeeee;    
+    float: left;  
+}
+.two
+{
+    background-color:#eeeeee;
+    float: left;
+}
+.three
+{
+    background-color:#eeeeee;
+    float: left;
+}
+    </style>
+  </head>
+  <body>
+
+       
+   <div class="one">
+ 
+  <textarea id="hexdata" name="hexdata" rows="10" cols="70"></textarea>
+  
+  <input type="submit" value="Submit" style="padding:10px;height:40px;margin-left:10px;border: 1px solid blue;background:#ffff00" onclick="parseAll()">
+		
+		</div>
+        <div class="two" id="bcedata"></div>
+        <div class="three" id="teldata"></div>
+		<div class="two" id="macdata"></div>
+        <div class="three" id="rupdata"></div>
+        <div class="one" id="quicdata"></div>
+    
+
+	
+  </body>
+</html>
+
+
+
+<script>
+
+function parseAll(){
+var hexdata=document.getElementById("hexdata").value;
+hexdata=hexdata.replace(/\s/g, "");
+if(hexdata==null || hexdata=='')
+alert('Input Data');
+var arr=parseData3000(hexdata);
+document.getElementById("bcedata").innerHTML =  'BCE-3000</br></br>'+JSON.stringify(arr, null, 4);
+arr=parseData3001(hexdata);
+document.getElementById("teldata").innerHTML =  'Teltonika-3001</br></br>'+JSON.stringify(arr, null, 4);
+arr=parseData3002(hexdata);
+document.getElementById("macdata").innerHTML =  'Machinetalk-3002</br></br>'+JSON.stringify(arr, null, 4);
+arr=parseData3003(hexdata);
+document.getElementById("rupdata").innerHTML =  'Ruptela-3003</br></br>'+JSON.stringify(arr, null, 4);
+arr=parseData3004(hexdata);
+document.getElementById("quicdata").innerHTML =  'Queclink-3004</br></br>'+JSON.stringify(arr, null, 4);
+}
+////////////////////////////////////
+function parseData3004(data) {
+	 let dataArr = [];
+   if (!data) {
+      return dataArr;
+   }
+   try {
+	   t
+	 //  console.log(data);
+	   
+	let len=data.length;
+	var l=0;
+	var ll=2;
+	var gpsdata='';
+	for(let i=0;i<len;i+=ll){
+	let str=data.substr(l, ll);	
+	str=String.fromCharCode(parseInt(str, 16));
+	l+=ll;
+	gpsdata+=str;
+	}
+	//console.log(gpsdata);
+	if(gpsdata.indexOf('+RESP:')>=0)
+	dataArr.push(gpsdata);
+	const protocols = ['+RESP:GTTOW', '+RESP:GTEPS', '+RESP:GTDIS','+RESP:GTIOB','+RESP:GTFRI', '+RESP:GTSPD', '+RESP:GTSOS','+RESP:GTPNL', '+RESP:GTRTL', '+RESP:GTDOG', '+RESP:GTAIS', '+RESP:GTIGL',
+	'+RESP:GTHBM', '+RESP:GTGES', '+RESP:GTERI',  '+RESP:GTGIN', '+RESP:GTGOT', '+RESP:GTLBC', '+RESP:GTIDA'];//,  '+RESP:GTSTT'
+	var fileds = gpsdata.split(",");
+	//+RESP:GTTOW, +RESP:GTEPS, +RESP:GTDIS , +RESP:GTIOB,  +RESP:GTFRI, +RESP:GTSPD, +RESP:GTSOS
+	//+RESP:GTPNL, +RESP:GTRTL, +RESP:GTDOG, +RESP:GTAIS, +RESP:GTIGL,
+	//+RESP:GTHBM, +RESP:GTGES, +RESP:GTERI,  +RESP:GTGIN, +RESP:GTGOT, +RESP:GTLBC, +RESP:GTIDA
+	if(!protocols.includes(fileds[0])){
+  	  //console.log("=========",fileds[0],'--',fileds.length);
+		return dataArr;
+	}
+	//0,1,2,3,6,26,27
+	//console.log("=========",fileds[0],'--',fileds.length);
+	
+	var pro=fileds[0].split(":");
+	var flen=fileds.length
+	
+	let ack='+ACK:'+pro[1]+','+fileds[1]+','+fileds[2]+','+fileds[3]+','+fileds[6]+','+fileds[flen-2]+','+fileds[flen-1];
+	
+   	ackData=chartohex(ack);
+//	console.log("=========",ack,'--',ackData);
+   var date = new Date(fileds[13].replace(
+    /^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/,
+    '$4:$5:$6 $2/$3/$1'
+));
+
+
+
+   
+   
+    let dataJson = {
+         imei: parseInt(fileds[2]),
+         avltm: Math.floor(date / 1000),
+         location: {
+            type: "Point",
+            coordinates: [parseFloat(fileds[11]),parseFloat(fileds[12])] //[long, latitude] must be in same order
+         },
+         alt: parseInt(fileds[10]),
+         ang: parseInt(fileds[9]),
+         spd: parseFloat(fileds[8]),
+		 odata:3004,
+         createdon: new Date().getTime(),
+         updatedon: new Date().getTime()
+      };
+	  
+	  dataArr.push(dataJson);
+	
+		var json='</br></br>{"ack":'+ack+'}';
+		dataArr.push(json);
+	
+	   return dataArr;
+	   
+   } catch (e) {
+      console.error(e);
+    //  console.log(e.message);
+   }
+   return dataArr;
+}
+function chartohex(dch){
+let hch='';
+let len=dch.length;
+	for(let ii=0;ii<len; ii+=1){
+	hch+=dch.charCodeAt(ii).toString(16);
+	}
+	return hch;
+}
+
+
+/////////////////////////////
+
+function parseData3003(data) {
+	//console.log("DATA",data);
+	 let dataArr = [];
+   if (!data) {
+      return dataArr;
+   }
+try {
+	
+
+//check CRC
+    var reccrc=data.substr(data.length-4);	   
+	var x=data.substr(4, data.length-8);
+	let bufdt =ethereumjs.Buffer.Buffer.from(x,'hex');
+	//let bufdt = Buffer.from(x, 'hex');
+   var datacrc=crc_16_rec(bufdt,bufdt.length);
+		
+	//console.log('CRC CHECK===',datacrc,'---',reccrc);
+	if(datacrc!=reccrc)
+		return dataArr;
+const precision = 0.0000001;
+
+	 
+var l=4;
+var ll=16;	 
+let hexData=data.substr(l, ll);	   
+let imei = parseInt(hexData, 16);	
+//console.log(hexData,'IMEI',imei);
+
+var l=20;
+var ll=2;	 
+hexData=data.substr(l, ll);	   
+let command = parseInt(hexData, 16);	
+//console.log(hexData,'command',command);
+
+var l=24;
+var ll=2;	 
+let no_of_rechex=data.substr(l, ll);	   
+let no_of_rec = parseInt(no_of_rechex, 16);	
+//console.log(no_of_rechex,'NO OF RECORD',no_of_rec);
+var l=26;
+var ll=data.length-l-4;	 // 4 CRC
+let allRecs=data.substr(l, ll);	   
+////console.log('RECORD',allRec);
+//no_of_rec in loop 
+
+//8,2,2,2,8,8,4,4,2,4
+"TIME","Time extension","Record extension","priority","lng","lat","alt 0.1","angle .01","satelite","speed"
+let reclen=allRecs.length/no_of_rec;
+
+for(let i=0;i<no_of_rec;i++){
+	var allRec=allRecs.substr(reclen*i, reclen);
+	//console.log('reclen',reclen,' ',allRec);
+var dataJson = {
+		imei: 0,
+		avltm:0,
+		location: {
+		type: "Point",
+		coordinates: [0,0] //[long, latitude] must be in same order
+		},
+		alt: 0,
+		ang: 0,
+		spd: 0,
+		odata:3003,
+		createdon: new Date().getTime(),
+		updatedon: new Date().getTime()
+};
+dataJson.imei=imei;
+
+
+		var l=0;
+		var ll=8;	 
+		hexData=allRec.substr(l, ll);	   
+		dataVal = parseInt(hexData, 16);	
+		//console.log(hexData,'Time',dataVal);
+		dataJson.avltm=dataVal;
+		var ex=0;
+		if(command==1)
+			ex=2;
+		else if(command==68)
+			ex=0;
+		
+		var l=14-ex;
+		var ll=8;	 
+		hexData=allRec.substr(l, ll);
+		dataVal = hexToInt(hexData);
+		var lng = dataVal*precision;
+		if(isNegativeNum(lng)){
+		lng = lng *  -1;
+		}
+		dataJson.location.coordinates[0]=lng;
+		//console.log('lng',hexData,' ',lng);
+		
+		var l=22-ex;
+		var ll=8;	 
+		hexData=allRec.substr(l, ll);
+		dataVal = hexToInt(hexData);
+		var lat = dataVal*precision;
+		if(isNegativeNum(lat)){
+		lat = lat *  -1;
+		}
+		dataJson.location.coordinates[1]=lat;
+		//console.log('lat',hexData,' ',lat);
+		
+		///altitude
+		var l=30-ex;
+		var ll=4;	 
+		hexData=allRec.substr(l, ll);	   
+		dataVal = parseInt(hexData, 16)*0.1;	
+		dataJson.alt=dataVal.toFixed(2)*1;
+		//console.log('alt',hexData,' ',dataVal);
+		//angle
+		var l=34-ex;
+		var ll=4;	 
+		hexData=allRec.substr(l, ll);	   
+		dataVal = parseInt(hexData, 16)*0.01;	
+		dataJson.ang=dataVal.toFixed(2)*1;
+		//console.log('ang',hexData,' ',dataVal);
+		//speed
+		var l=40-ex;
+		var ll=4;	 
+		hexData=allRec.substr(l, ll);	   
+		dataVal = parseInt(hexData, 16);	
+		dataJson.spd=dataVal;
+		//console.log('spd',hexData,' ',dataVal);
+		dataJson.odata=3003;
+		
+	//	console.log(dataJson);
+		
+	dataArr.unshift(dataJson);	
+}
+
+ackData = '64'+no_of_rechex; 
+let buffData = ethereumjs.Buffer.Buffer.from(ackData,'hex');;//Buffer.from(ackData, 'hex');
+var crc=crc_16_rec(buffData,buffData.length);
+ackData='0002'+ackData+crc;
+//console.log("=================",ackData);
+//ackData = '0002640113BC'; 
+//acknowlegement 0002640113BC
+
+var json='</br></br>{"ack":'+ackData+'}';
+		dataArr.push(json);
+return dataArr;	   
+	   
+   } catch (e) {
+      console.error(e);
+      //console.log(e.message);
+   }
+   return dataArr;
+}
+
+function crc_16_rec(pucData, ucLen) {
+  let usPoly = 0x8408;
+  let usCRC = 0;
+  for (let i = 0; i < ucLen; i++) {
+    usCRC ^= pucData[i];
+    for (let ucBit = 0; ucBit < 8; ucBit++) {
+      let ucCarry = usCRC & 1;
+      usCRC >>= 1;
+      if (ucCarry) {
+        usCRC ^= usPoly;
+      }
+    }
+  }
+ var x=usCRC.toString(16) ;
+ while(x.length<4)
+	 x='0'+x;
+  return x;
+}
+
+
+
+function hexToInt(hex) {
+    if (hex.length % 2 != 0) {
+        hex = "0" + hex;
+    }
+    var num = parseInt(hex, 16);
+    var maxVal = Math.pow(2, hex.length / 2 * 8);
+    if (num > maxVal / 2 - 1) {
+        num = num - maxVal
+    }
+    return num;
+}
+function isNegativeNum(x){
+   let binary = x.toString(2);
+   if(binary.startsWith('0')){ //check first bit
+      return true; //-ve
+   }
+   return false; //+ve
+}
+
+
+//
+
+
+var degug=false;
+function parseData3002(cdata) {
+	
+//	var m = new Date(Date.now());
+//	var dt=m.toLocaleString();
+	//console.log('Data received:',dt,':3002-Machinestalk:',cdata);
+	 let dataArr = [];
+   if (!cdata) {
+      return dataArr;
+   }
+   try {
+	   
+  //var hc=hexttochar('40406a32372c3836373639383034333336353630332c4346462c392a32330d0a');
+ //  console.log('===',hc);
+	   
+	const precision = 0.000001;
+	var imeistr='';
+	var cctstr='';
+	let identifierhex1='';
+	let imei;
+	let recno=0;
+	while(cdata.length>0){
+	var n1=cdata.indexOf('2a')+2;
+	var nn=cdata.indexOf('0d0a',n1)+4;
+	var data=cdata.substr(0,nn);
+	cdata=cdata.substr(nn);
+	//console.log('===',data);
+	
+	   let dataJson = {
+         imei: '',
+         avltm: 0,
+         location: {
+            type: "Point",
+            coordinates: [] //[long, latitude] must be in same order
+         },
+         alt: 0,
+         ang: 0,
+         spd: 0,
+		 odata:3002,
+         createdon: new Date().getTime(),
+         updatedon: new Date().getTime()
+      };
+
+	 
+	  
+
+	
+	var l=0;
+	var ll=4;
+	let str=data.substr(l, ll);	
+	if(str=='2424'){//$$ is okay return null
+		l=4;
+		ll=2;
+		
+		var identifierhex=data.substr(l, ll);	
+		//if(identifierhex1=='')
+			identifierhex1=identifierhex;
+		let identifier = parseInt(identifierhex, 16);
+	    if(degug)
+		console.log(identifierhex, 'hex', identifierhex, "IDENTIFIER", identifier);
+		if(identifier>=65 && identifier<=122){	//return null
+		
+		
+		    l=data.lastIndexOf('2a')+2;
+			let checksum1=data.substr(0,l);
+			let cksum = CHECKSUM(checksum1);
+			ll=data.indexOf('0d0a',l)-l;
+			if(degug)
+			console.log("-----",l ,'-',ll);
+			let hexcheck=data.substr(l, ll);	
+			let rec_cksum=hexttochar(hexcheck);
+			
+			if(degug)
+			console.log("CHECKSUM===",hexcheck ,'-',checksum1);
+			
+			if(degug)
+			console.log("CHECKSUM---", rec_cksum,'-',cksum);// b9 dec-9857 hex-6239
+			if(cksum.toLowerCase()==rec_cksum.toLowerCase()){// checksum should be equal
+		
+			l=6;
+			ll=data.indexOf('2c',l);
+			let str1=data.substr(ll);	
+			if(degug)
+			console.log(str1,'=====',data.length,'--',ll,'--------',str1,'--',str1.length);
+			ll=ll-l;			
+			str=data.substr(l, ll);	
+			let datalen = hexttochar(str);
+			if(degug)
+			console.log(str, 'hex', str, "DATALENGTH", datalen);
+			
+			l=l+ll+2;
+			ll=data.indexOf('2c',l)-l;
+			imeistr=data.substr(l, ll);	
+			imei = hexttochar(imeistr);
+			if(degug)
+			console.log(imeistr, "IMEI============", imei);
+			
+			dataJson.imei=parseInt(imei);
+			
+			
+			l=l+ll+2;
+			ll=data.indexOf('2c',l)-l;
+			cctstr=data.substr(l, ll);	
+			let ctype = hexttochar(cctstr);
+			
+			if(degug)
+			console.log(cctstr, 'hex', cctstr, "Command type", ctype);
+			
+			
+			l=l+ll+2;
+			ll=8;
+			str=data.substr(l, ll);	
+			let rec_no = hexttoLengthCal(str);
+			if(degug)
+			console.log(str, 'hex', str, "remaining cache record=====", rec_no);
+			
+			
+			l=l+ll;
+			ll=4;
+			str=data.substr(l, ll);	
+			let pkt_no = hexttoLengthCal(str);
+			if(degug)
+			console.log(str, 'hex', str, "Number of data packets====", pkt_no);
+			
+			l=l+ll;
+			ll=4;
+			str=data.substr(l, ll);	
+			let pkt_len = hexttoLengthCal(str);
+			if(degug)
+			console.log(str, 'hex', str, "Length of the current data packet===", pkt_len);
+			
+			l=l+ll;
+			ll=4;
+			str=data.substr(l, ll);	
+			let tot_ids = hexttoLengthCal(str);
+			if(degug)
+			console.log(str, 'hex', str, "Total number of ID in the current data packet===", tot_ids);
+			
+			l=l+ll;
+			ll=2;
+			str=data.substr(l, ll);	
+			let one_byte_param_no = hexttoLengthCal(str);
+			if(degug)
+			console.log(str, 'hex', str, "Number of 1-byte parameter ID", one_byte_param_no);
+			
+			
+			for(let i=0;i<one_byte_param_no;i++){
+				l=l+ll;
+				ll=4;
+				str=data.substr(l, ll);				
+				if(degug)
+				console.log(str, 'hex', str, "field", str);
+			}
+			
+			l=l+ll;
+			ll=2;
+			str=data.substr(l, ll);	
+			let two_byte_param_no = hexttoLengthCal(str);
+			if(degug)
+			console.log(str, 'hex', str, "Number of 2-byte parameter ID", two_byte_param_no);
+			
+			let speed=0; // 08
+			let altitude=0;//0b
+			let angle=0; // 09
+			
+			for(let i=0;i<two_byte_param_no;i++){
+				l=l+ll;
+				ll=6;
+				str=data.substr(l, ll);				
+				if(degug)
+				console.log(str, 'hex', str, "field", str);
+				let s=str.substr(0,2);
+				let s1=str.substr(2,4);
+				
+			if(s=='08')
+				speed=uInt16(s1);
+			else if(s=='09')
+				angle=uInt16(s1);
+			else if(s=='0b')
+				altitude=uInt16(s1);
+				
+			}
+			if(degug)
+			console.log(speed, '-', angle,'-' , altitude);
+			
+			dataJson.spd=speed;
+			dataJson.ang=angle;
+			dataJson.alt=altitude;
+			
+			l=l+ll;
+			ll=2;
+			str=data.substr(l, ll);	
+			let four_byte_param_no = hexttoLengthCal(str);
+			if(degug)
+			console.log(str, 'hex', str, "Number of 4-byte parameter ID", four_byte_param_no);
+			
+			
+			let lat=0; // 02
+			let lng=0;//03
+			let datetime=0; // 04
+			
+			for(let i=0;i<four_byte_param_no;i++){
+				l=l+ll;
+				ll=10;
+				str=data.substr(l, ll);				
+				if(degug)
+				console.log(str, 'hex', str, "field", str);
+				let s=str.substr(0,2);
+				let s1=str.substr(2,8);
+				
+			if(s=='02')
+				lat=uInt32(s1)*precision;
+			else if(s=='03')
+				lng=uInt32(s1)*precision;
+			else if(s=='04')
+				datetime=uInt16(s1)+946684805;//+946708560;
+				
+			}
+			if(degug)
+			console.log(lat, '-', lng,'-' , datetime);
+			dataJson.location.coordinates[1]=lat;
+			dataJson.location.coordinates[0]=lng;
+			dataJson.avltm=datetime;
+			dataArr.unshift(dataJson);
+			recno++;
+			if(degug)
+			console.log(dataJson);
+		 }
+		}
+	
+	
+	
+	
+	
+	}
+	
+	//break;
+	}
+	
+	
+	let ack='';
+	ack+='2c';
+	ack+=imeistr;///imei
+	ack+='2c';
+	ack+=cctstr;// cc type
+	ack+='2c';
+	ack+=chartohex(''+recno)+'2a';//
+	
+	ack='4040'+'53'+'3237'+ack;//identifierhex1
+	ack=ack+chartohex(CHECKSUM(ack))+'0d0a';
+	if(degug)
+		console.log("ACKNOWLEDGEMENT===",ack);
+	ackData=ack;//hexttochar(ack)+'\r\n';
+	var json='</br></br>{"ack":'+ackData+'}';
+		dataArr.push(json);
+	//46+8=54/2=27 3237
+	//40406732372c3836373639383034333336353630332c4346462c2a45370d0a
+console.log("IMEI",imei,' REC NO: ',recno);//CHECKSUM(chartohex('@@S27,867698040889019,CFF,9*'))
+	
+   } catch (e) {
+      console.error(e);
+      if(degug)
+		console.log(e.message);
+   }
+  return dataArr;
+}
+
+function CHECKSUM(hexstring) {
+	if(hexstring==null || hexstring=='' || hexstring.length<2)
+		return '00';
+	//console.log('---',hexstring);
+   let s = hexstring.match(/../g);
+    let sum = 0;
+   //if(s!=null){
+  
+   s.forEach(function (hexbyte) {
+      let n = 1 * ('0x' + hexbyte); // convert hex to number
+      sum += n;
+   });
+  //}
+   sum = (sum & 0xff).toString(16);
+   if (sum.length % 2)
+      sum = '0' + sum;
+   return sum;//.toUpperCase()
+}
+
+function uInt32(dhex) {
+	var data = dhex.match(/../g);
+	var buf = new ArrayBuffer(4);
+	var view = new DataView(buf);
+	data.forEach(function (b, i) {
+	view.setUint8(i, parseInt(b, 16));
+	});
+	var num = view.getInt32(0, 1);
+	return num;
+}
+
+function uInt16(dhex) {
+	var data = dhex.match(/../g);
+	var buf = new ArrayBuffer(4);
+	var view = new DataView(buf);
+	data.forEach(function (b, i) {
+	view.setUint8(i, parseInt(b, 16));
+	});
+	var num = view.getInt32(0, 1);
+	return num;
+}
+function hexttochar(dhex){
+	let len=dhex.length/2;
+	let hch='';
+	for(let ii=0;ii<len; ii+=1){
+		hch+=String.fromCharCode(parseInt(dhex.substr(ii*2,2),16));
+	}
+	
+	return hch;
+
+}
+
+
+function hexttoLengthCal(dhex){
+	let len=dhex.length;
+	let hch=0;
+	for(let ii=0;ii<len-1; ii+=2){
+		hch+=parseInt(dhex.substr(ii,2),16);
+	}
+	
+	return hch;
+
+}
+function chartohex(dch){
+let hch='';
+let len=dch.length;
+	for(let ii=0;ii<len; ii+=1){
+	hch+=dch.charCodeAt(ii).toString(16);
+	}
+	return hch;
+}
+
+
+
+
+
+
+function parseData3001(data) {
+	  let dataArr = [];
+   if(!data){
+      return dataArr;
+   }
+   try {
+	   
+	   const precision = 0.0000001;
+      
+	  
+	   
+	 var ack='';
+      //4,4,2,2,4
+      let l = 0;
+	  let ll = 4;
+      let hexData = data.substr(l, ll);
+      let dataVal = parseInt(hexData, 16);
+	  ack+='0005';
+      l += ll;
+	  ll = 4;
+      hexData = data.substr(l, ll);
+      dataVal = parseInt(hexData, 16);
+	   ack+=hexData;
+      l += ll;
+	  ll = 2;
+      hexData = data.substr(l, ll);
+      dataVal = parseInt(hexData, 16);
+	   ack+=hexData;
+	  l += ll;
+	  ll = 2;
+      hexData = data.substr(l, ll);
+      dataVal = parseInt(hexData, 16);
+	   ack+=hexData;
+	  l += ll;
+	  ll = 4;
+      hexData = data.substr(l, ll);
+      dataVal = parseInt(hexData, 16);
+	  
+	  l += ll;
+	  ll = dataVal*2;
+      hexData = data.substr(l, ll);
+      //let imei = parseInt(hexData, 16);
+	 let imei = ''
+      for(let i=1;i<hexData.length;i+=2){
+         imei += hexData.charAt(i);
+      }
+	 // console.log(hexData,'IMEI',imei*1);
+	  
+	  l += ll;
+	  ll = 2;
+      hexData = data.substr(l, ll);
+      dataVal = parseInt(hexData, 16);
+	  
+	  l += ll;
+	  ll = 2;
+     let  noofrec = data.substr(l, ll);
+      let no_of_rec=parseInt(noofrec, 16);
+	  
+	  
+	 // console.log(hexData,'NUMBER OF RECORD ',no_of_rec);
+	  
+	  
+	  
+l += ll;
+ll=data.length-l-2;	 // 1 byte no of rec 4 CRC
+let allRecs=data.substr(l, ll);	   
+//console.log('RECORD',allRecs);
+let reclen=allRecs.length/no_of_rec;
+// console.log('RECORD LEN ',reclen);
+
+for(let i=0;i<no_of_rec;i++){
+var allRec=allRecs.substr(reclen*i, reclen);
+//console.log('RECORD',allRec);
+var dataJson = {
+         imei: imei*1,
+         avltm: 0,
+         location: {
+            type: "Point",
+            coordinates: [] //[long, latitude] must be in same order
+         },
+         alt: 0,
+         ang: 0,
+         spd: 0,
+		 odata:3001,
+         createdon: new Date().getTime(),
+         updatedon: new Date().getTime()
+      };
+	  
+	//  8,1,4,4,2,2,1,2
+	//timestamp,priority,longitude,latitude,altitude,angle,satelite,speed
+	l=0;
+	ll=16;	 
+	hexData=allRec.substr(l, ll);	   
+	dataVal = parseInt(hexData, 16);	
+	//console.log(hexData,'Time',dataVal);
+	dataJson.avltm=dataVal;
+	l=l+ll;
+	ll=2;	// priority
+	l=l+ll;
+	ll=8;	
+	hexData=allRec.substr(l, ll);
+	dataVal = parseInt(hexData, 16);
+	var lng = dataVal*precision;
+	if(isNegativeNum(lng)){
+	lng = lng *  -1;
+	}
+	dataJson.location.coordinates[0]=lng;
+	l=l+ll;
+	ll=8;	
+	hexData=allRec.substr(l, ll);
+	dataVal = parseInt(hexData, 16);
+	var lat = dataVal*precision;
+	if(isNegativeNum(lat)){
+	lat = lat *  -1;
+	}
+	dataJson.location.coordinates[1]=lat;
+	
+	l=l+ll;
+	ll=4;	
+	hexData=allRec.substr(l, ll);
+	dataVal = parseInt(hexData, 16);
+	dataJson.alt=dataVal;
+	l=l+ll;
+	ll=4;	
+	hexData=allRec.substr(l, ll);
+	dataVal = parseInt(hexData, 16);
+	dataJson.ang=dataVal;
+	l=l+ll;
+	ll=2;	// satelite
+	hexData=allRec.substr(l, ll);
+	dataVal = parseInt(hexData, 16);
+	
+	l=l+ll;
+	ll=4;	
+	hexData=allRec.substr(l, ll);
+	dataVal = parseInt(hexData, 16);
+	dataJson.spd=dataVal;
+	dataArr.push(dataJson);
+   //'00000001'; // ackowlegemenet for 1 record  	no_of_rec ==1 
+   //'00000002'; // ackowlegemenet for 2 or more record      no_of_rec>=2
+
+}
+	  
+
+     //*********** ACKNOWLEDGEMENT*************
+     
+	 ackData=ack+''+noofrec;
+	// console.log(ackData);
+	if(dataArr.length>0){
+	var json='</br></br>{"ack":'+ackData+'}';
+	dataArr.push(json);
+	}
+	 //*******************************
+   } catch (e) {
+      console.error(e);
+     // console.log(e.message);
+   }
+    return dataArr;
+}
+
+
+/*
+Note:
+To determine if the coordinate is negative, convert it to binary format and check the very rst bit. If it is 0, coordinate is positive, if it is 1, coordinate is
+negative.
+ */
+function isNegativeNum(x){
+   let binary = x.toString(2);
+   if(binary.startsWith('0')){ //check first bit
+      return true; //-ve
+   }
+   return false; //+ve
+}
+
+
+
+
+
+function parseData3000(data) {
+	//console.log('Data received',data);
+   let dataArr = [];
+   if (!data) {
+      return dataArr;
+   }
+   try {
+	   var tm=0;
+      //IMEI 8, 2, 1,1, 1(length)
+      var l = 0;
+      var ll = 16;
+      let imeistr = data.substr(l, ll);
+      let hexData = getHexData(imeistr);
+      let imei = parseInt(hexData, 16);
+     // console.log(imeistr, 'hex', hexData, "IMEI", imei);
+
+
+      l = 16;
+      ll = 4;
+      let str = data.substr(l, ll);
+      hexData = getHexData(str);
+      let dataVal = parseInt(hexData, 16);
+     //console.log(str, 'hex', hexData, "DATA LENGTH", dataVal);
+
+      l = 20;
+      ll = 2;
+      str = data.substr(l, ll);
+      dataVal = parseInt(str, 16);
+      //console.log(str, 'hex', str, "AsynckStack", dataVal);
+
+      l = 22;
+      ll = 2;
+      str = data.substr(l, ll);
+      let confimkey = parseInt(str, 16);
+     // console.log(str, 'hex', str, "Confimration Key", confimkey);
+
+
+     /* l = 24;
+      ll = 2;
+      str = data.substr(l, ll);
+      let reclen = parseInt(str, 16);
+      //console.log(str, 'hex', str, "structure len", reclen);
+      ll = reclen * 2;
+      l = 26;*/
+	  l=l+2;
+	  var z=0;
+	  while (true) {
+	  z++;
+	  ll=2;
+	  str = data.substr(l, ll);
+      var reclen = parseInt(str, 16);
+     // console.log(str, 'hex', str, "structure len", reclen);
+	  l=l+ll;
+	  ll=reclen*2;
+		  
+	  let rec = data.substr(l, ll);
+	  //console.log(reclen, 'hex', rec, "-", rec.length);
+         if (rec.length < ll)
+            break;
+		else{//////////////////////
+			  let dataJson = {
+               imei: '',
+               avltm: 0,
+               location: {
+                  type: "Point",
+                  coordinates: [] //[long, latitude] must be in same order
+               },
+               alt: 0,
+               ang: 0,
+               spd: 0,
+               odata: 3000,
+               createdon: Date.now(),
+               updatedon: Date.now()
+            };
+			
+			
+            dataJson.imei = imei;
+			var i = 0;
+            var ii = 8;
+            var recstr1 = rec.substr(i, ii);
+            var recstr = recstr1.substr(0, 1) + '' + recstr1.substr(2, 8);
+            hexData = getHexData(recstr);
+            dataVal = parseInt(hexData, 16) * 2 + parseInt('47798280', 16);
+            //console.log(recstr1, 'hex', hexData, "Time", dataVal);
+            dataJson.avltm = dataVal;
+			
+			
+			 i = 8;
+            ii = 4;
+            var isgps = 0;
+            var count = 0;
+			var o=0;
+            while (true) {
+               recstr1 = rec.substr(i, ii);
+               hexData = getHexData(recstr1);
+               dataVal = hex2bin(hexData);
+               //console.log(recstr1, 'hex', hexData, "MASK", dataVal);
+               i = i + ii;
+               if (count == 0) {
+                  if (dataVal.endsWith('1'))
+                     isgps = 1;
+               }
+               count++;
+               if (dataVal.startsWith('0'))
+                  break;
+
+               o++;
+               if(o>10)
+               	break;
+
+            }
+
+            if (isgps == 1) {
+			 ii = 34;
+               let gps = rec.substr(i, ii);
+               //console.log('GPS', gps);
+			   i = 0;
+               ii = 8;
+               recstr1 = gps.substr(i, ii);
+               hexData = getHexData(recstr1);
+               dataVal = HexToFloat32(hexData);
+             //  //console.log(recstr1, 'hex', hexData, "LONGITUDE", dataVal);
+               dataJson.location.coordinates[0] = dataVal;
+
+               i = 8;
+               ii = 8;
+               recstr1 = gps.substr(i, ii);
+               hexData = getHexData(recstr1);
+               dataVal = HexToFloat32(hexData);
+              // //console.log(recstr1, 'hex', hexData, "LATITUDE", dataVal);
+               dataJson.location.coordinates[1] = dataVal;
+
+               i = 16;
+               ii = 2;
+               recstr1 = gps.substr(i, ii);
+               hexData = getHexData(recstr1);
+               dataVal = parseInt(hexData, 16);
+               ////console.log(recstr1, 'hex', hexData, "SPEED", dataVal);
+               dataJson.spd = dataVal;
+
+               i = 18;
+               ii = 2;
+               recstr1 = gps.substr(i, ii);
+               hexData = getHexData(recstr1);
+               dataVal = parseInt(hexData, 16)*2;
+               ////console.log(recstr1, 'hex', hexData, "COURSE", dataVal);
+               dataJson.ang = dataVal;
+
+               i = 20;
+               ii = 2;
+               recstr1 = gps.substr(i, ii);
+               hexData = getHexData(recstr1);
+               dataVal = parseInt(hexData, 16);
+              // //console.log(recstr1, 'hex', hexData, "Altitude", dataVal);
+               dataJson.alt = dataVal;
+			   //dataArr.pop();
+			   if(isValidData(dataJson)){
+			   if(tm<dataJson.avltm){
+				   tm=dataVal;
+				dataArr.unshift(dataJson);
+			   }
+			   else{
+			    dataArr.push(dataJson);
+			   }
+			   }
+			 //  console.log(dataJson);
+			   
+			}
+			
+			
+			
+			
+			
+			
+		
+		}//////////////////////////
+		l=l+ll;
+		//console.log('========',l);
+		if(l>=data.length || z>100)
+		break;
+	  }
+	  
+    // //console.log(tm);
+
+      //////////////////*********/////////////////////////////////
+      //Acknowlegement
+	   var ckey=bitwiseand(confimkey,127).toString(16);
+	  if(ckey.length<2)
+		  ckey='0'+ckey;
+		  
+      if(dataArr.length>0){
+	  let ack = imeistr + '0200' + '19'+ckey;
+	  
+      ack = ack + CHECKSUM(ack);
+      ackData = ack;
+	  var json='</br></br>{"ack":'+ackData+'}';
+	  dataArr.push(json);
+	  }
+     // console.log(ack, 'ack');
+      //////////////////*********////////////////////////////////
+	  
+
+   } catch (e) {
+      console.error(e);
+      //console.log(e.message);
+   }
+   return dataArr;
+}
+
+function isValidData(data){
+	if(data.imei!=null && (''+data.imei).length==15){
+		if(data.location.coordinates[0]!=null && data.location.coordinates[1]>10 && data.location.coordinates[1]<36 && data.location.coordinates[0]>28 && data.location.coordinates[0]<70)
+		return true;
+	}
+return false;
+}
+
+function bitwiseand(a,b) {
+	var x=a & b;
+	if (x<10)
+      x = '0' + x;
+	return x;
+}
+
+function CHECKSUM(hexstring) {
+
+   let s = hexstring.match(/../g);
+   let sum = 0;
+   s.forEach(function (hexbyte) {
+      let n = 1 * ('0x' + hexbyte); // convert hex to number
+      sum += n;
+   });
+   sum = (sum & 255).toString(16);
+   if (sum.length % 2)
+      sum = '0' + sum;
+   return sum;
+}
+
+
+function getHexData(token) {
+   if (token.length <= 2) {
+      return token;
+   }
+   let hexData = '';
+   for (let i = token.length; i >= 1; i -= 2) {
+      hexData += token.substring(i - 2, i)
+   }
+   return hexData;
+}
+
+
+function hex2bin(hex) {
+   hex = hex.replace("0x", "").toLowerCase();
+   let out = "";
+   for (let c of hex) {
+      switch (c) {
+         case '0':
+            out += "0000";
+            break;
+         case '1':
+            out += "0001";
+            break;
+         case '2':
+            out += "0010";
+            break;
+         case '3':
+            out += "0011";
+            break;
+         case '4':
+            out += "0100";
+            break;
+         case '5':
+            out += "0101";
+            break;
+         case '6':
+            out += "0110";
+            break;
+         case '7':
+            out += "0111";
+            break;
+         case '8':
+            out += "1000";
+            break;
+         case '9':
+            out += "1001";
+            break;
+         case 'a':
+            out += "1010";
+            break;
+         case 'b':
+            out += "1011";
+            break;
+         case 'c':
+            out += "1100";
+            break;
+         case 'd':
+            out += "1101";
+            break;
+         case 'e':
+            out += "1110";
+            break;
+         case 'f':
+            out += "1111";
+            break;
+         default:
+            return "";
+      }
+   }
+
+   return out;
+}
+
+const HexToFloat32 = (str) => {
+   let int = parseInt(str, 16);
+   if (int > 0 || int < 0) {
+      let sign = int >>> 31 ? -1 : 1;
+      let exp = ((int >>> 23) & 0xff) - 127;
+      let mantissa = ((int & 0x7fffff) + 0x800000).toString(2);
+      let float32 = 0;
+      for (let i = 0; i < mantissa.length; i += 1) {
+         float32 += parseInt(mantissa[i]) ? Math.pow(2, exp) : 0;
+         exp--;
+      }
+      return float32 * sign;
+   } else return 0;
+};
+
+</script>
